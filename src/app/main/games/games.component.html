@@ -1,1 +1,53 @@
-<p>games works!</p>
+<div class="col-md-6">
+    <div class="vod-part">
+        <div class="vod-line one"></div>
+        <div class="vod-line two"></div>
+        <div class="vod-line three"></div>
+    </div>
+
+<style>
+    body{
+    min-height: 80%;
+  }
+  @keyframes linemove {
+    from {left: 0px;}
+  to {left: 200px;}
+}
+  .vod-part {
+    box-shadow: inset 0px 3px 15px 3px rgb(0 0 0 / 60%);
+    border-radius: 15px;
+    height: 295px;
+    margin-top: 26px;
+    margin-left: -1000px;
+    margin-right: 65px;
+    animation: linemove 3999999s linear infinite;
+    
+}
+
+@keyframes linemove {
+    100% {margin-left: -99999999px;}
+}
+ 
+
+.vod-line.one {
+    background-image: url("../../../assets/res/img/vod-1.png");
+    margin-bottom: 2px;
+    border-top-right-radius: 15px;
+}
+.vod-line {
+    height: calc((100% - 4px) /3);
+    background-size: auto 100%;
+    background-repeat-y: no-repeat;
+    position: relative;
+    z-index: -1;
+}
+.vod-line.two {
+    background-image: url("../../../assets/res/img/vod-2.png");
+    margin-bottom: 2px;
+}
+.vod-line.three {
+    background-image: url("../../../assets/res/img/vod-3.png");
+    border-bottom-right-radius: 15px;
+}
+
+</style>

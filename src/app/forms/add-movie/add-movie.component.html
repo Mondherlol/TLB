@@ -1,0 +1,100 @@
+<main>
+  <div class="container-fluid px-1 py-5 mx-auto">
+    <div class="row d-flex justify-content-center">
+      <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+        <div class="card">
+          <h5 class="text-center mb-4">AJOUTEZ VOTRE FILM</h5>
+          <form     [formGroup]="movieFormGroup" (ngSubmit)="afficher()" class="form-card" >
+            <div class="row justify-content-between text-left">
+              <div class="form-group col-sm-6 flex-column d-flex">
+                <label class="form-control-label px-3"
+                  >Titre<span class="text-danger"> *</span></label >
+                <input
+                  type="text"
+                  id="titre"
+                  name="titre"
+                  placeholder="Titre du film"
+                  required
+                  formControlName="titre"
+                />
+                <div *ngIf="isInvalidTitre()" class="alert alert-danger">
+                    L'identifiant est obligatoire
+                    </div>
+              </div>
+              <div class="form-group col-sm-6 flex-column d-flex">
+                <label class="form-control-label px-3"
+                  >Année de sortie<span class="text-danger"> *</span></label >
+                  <input type="number" id="anneeSortie" name="anneeSortie" formControlName="anneeSortie" min="1900" max="2099" step="1" value="2022" />
+              
+              </div>
+            </div>
+            <div class="row justify-content-between text-left">
+              <div class="form-group col-sm-6 flex-column d-flex">
+                <label class="form-control-label px-3"
+                  >Genre<span class="text-danger"> *</span></label
+                >
+                <input
+                  type="text"
+                  id="themes"
+                  name="themes"
+                  formControlName="themes"
+                  placeholder="Genre du film"
+                />   
+                 <div *ngIf="isInvalidGenre()" class="alert alert-danger">
+                    Le genre est obligatoire
+                    </div>
+              </div>
+              <div class="form-group col-sm-6 flex-column d-flex">
+                <label class="form-control-label px-3"
+                  >Note<span class="text-danger"> *</span></label
+                >
+                <select id="note"  name="note" formControlName="note" class="form-control">
+                  <option  value="1">⭐</option>
+                  <option value="2">⭐⭐</option>
+                  <option selected value="3">⭐⭐⭐</option>
+                  <option value="4">⭐⭐⭐⭐</option>
+                  <option value="5">⭐⭐⭐⭐⭐</option>
+                </select>
+              </div>
+            </div>
+            <div class="row justify-content-between text-left">
+              <div class="form-group col-sm-12 flex-column d-flex">
+                <label class="form-control-label px-3"
+                  >Image du film <span class="text-danger"> *</span></label
+                >
+                <input
+                  type="text"
+                  formControlName="posterURL"
+                  placeholder="https://www.exemple.com/image.jpg"
+                />
+                <div *ngIf="isInvalidImage()" class="alert alert-danger">
+                    L'image du film est obligatoire.
+                    </div>
+              </div>
+            </div>
+            <div class="row justify-content-between text-left">
+              <div class="form-group col-12 flex-column d-flex">
+                <label class="form-control-label px-3"
+                  >Résumé du film<span class="text-danger">
+                    *</span
+                  ></label
+                >
+              <textarea maxlength="130" id="description" name="description" formControlName="description"  placeholder="Petit résumé du film..." ></textarea>
+              <div *ngIf="isInvalidDescription()" class="alert alert-danger">
+                Le résumé du film est obligatoire.
+                </div>
+              </div>
+            </div>
+            <div class="row justify-content-end">
+              <div class="form-group col-sm-6">
+                <button type="submit" id="Terminer"  class="btn-block btn-primary" [disabled]="movieFormGroup.invalid">
+                  terminer
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

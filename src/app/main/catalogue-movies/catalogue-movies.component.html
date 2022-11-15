@@ -1,0 +1,120 @@
+
+<div class="container-fluid " class="styleCard"  >
+
+    <div class="row  "  >
+    
+      
+       <div class="col-md-3" *ngFor="let m of movies">
+    
+         
+        <div class="card" id="{{m._id}}" (mouseover)="afficher(m._id)" (mouseout)="cacher(m._id)"
+         style="background-image: url({{m.posterURL}});
+        background-repeat: no-repeat;
+        background-size: cover;"> 
+          <div class="card-spacing"></div>
+          <div class="card-content">
+          <h2>{{m.titre}} {{m.AnneeSortie}}</h2>
+          <p class="rating">⭐⭐⭐⭐⭐ {{m.note}}/5</p>
+          <div class="tags" >
+            <div *ngFor="let t of m.themes" class="tagbox">
+                <div class="tagbox {{t}}">{{t}}</div>
+    
+            </div>
+            <!-- <div class="tagbox purple">Fantasy</div>
+            <div class="tagbox pink">Sci Fi</div> -->
+    
+          </div>
+          <div class="description">
+            {{m.description}}
+          </div>
+         
+      
+          <div class="card-footer " style="text-align:center;">
+            <div class="row">
+              <a class="btn btn-outline-primary" routerLink="/movie/{{m._id}}"> VOIR PLUS</a>
+              <button class="btn btn-outline-danger" (click)="deleteMovie(m._id)"> SUPPRIMER</button>
+            </div>
+    
+    
+            </div>
+    
+          </div>
+    
+        
+        </div>
+        
+       </div>
+    </div>
+        </div>
+    
+    
+        <div class="row landing-hosting">
+            <div class="col-md-6">
+                <div class="vod-part">
+                    <div class="vod-line one"></div>
+                    <div class="vod-line two"></div>
+                    <div class="vod-line three"></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <br><br><h3>Vous ne trouvez pas un film en particulier ?<span style="color: #d81f26;"> Ajoutez-le !</span></h3>
+          
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae enim sed metus porttitor venenatis eu a sem. Integer a sem scelerisque, faucibus purus quis, vestibulum sem.            </p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.            </p>
+                <a class="ordr-nw-bttn" routerLink="/addMovie">Ajouter un Film</a>
+            </div>
+        </div>
+    
+    <!-- 
+    <div class="container" class="styleCard"  >
+        <div class="card" id="avengers" (mouseover)="afficher('avengers')" (mouseout)="cacher('avengers')"
+         style="background-image: url(https://i.imgur.com/VqgIGmN.png);
+        background-repeat: no-repeat;
+        background-size: cover;"> 
+          <div class="card-spacing"></div>
+          <div class="card-content">
+          <h2>Avengers Infinity War (2018)</h2>
+          <p class="rating">⭐⭐⭐⭐⭐ 5/5</p>
+          <div class="tags">
+            <div class="tagbox purple">Fantasy</div>
+            <div class="tagbox pink">Sci Fi</div>
+          </div>
+          <div class="description">
+            Iron Man, Thor, the Hulk, and a bunch of other Avengers unite to battle their most powerful enemy yet. 
+          </div>
+         
+      
+          <div class="card-footer " style="text-align:center;">
+                <button class="btn btn-outline-primary"> VOIR PLUS</button>
+            </div>
+    
+          </div>
+    
+        
+        </div>
+    
+        <div class="card" id="sonic" (mouseover)="afficher('sonic')" (mouseout)="cacher('sonic')" 
+        style="background-image: url(https://i.ebayimg.com/images/g/j08AAOSwG-diUNyQ/s-l1600.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;"> 
+            <div class="card-spacing"></div>
+            <div class="card-content">
+            <h2>Sonic Le Film (2022)</h2>
+            <p class="rating">⭐⭐⭐⭐⭐ 5/5</p>
+            <div class="tags">
+              <div class="tagbox blue">Animation</div>
+              <div class="tagbox red">Aventure</div>
+            </div>
+            <div class="description">
+                Bien installé dans la petite ville de Green Hills, Sonic veut maintenant prouver qu'il a l'étoffe d'un véritable héros.        </div>
+            <div class="card-footer " style="text-align:center;">
+                <button class="btn btn-outline-primary"> VOIR PLUS</button>
+            </div>
+    
+            </div>
+      
+          
+          </div>
+      </div> -->

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MoviesService } from 'src/app/services/movieService/movies.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AddMovieComponent implements OnInit {
   movieFormGroup : FormGroup = new FormGroup({});
+  movie:any;
   constructor(
     private _formBuilder: FormBuilder,
     private movieService: MoviesService,
@@ -24,15 +25,30 @@ export class AddMovieComponent implements OnInit {
       description:['',Validators.required],
       posterURL:['',Validators.required],
       note:[3],
-      themes:["",Validators.required],
+      themes:this._formBuilder.array([]),
+      realisateur:[''],
+      trailerURL:['https://youtu.be/dFlDRhvM4L0'],
       userId:['fldslkl']
 
 
     });
   }
   afficher(){
-    console.log(this.movieFormGroup.value);
-    this.movieService.addMovie(this.movieFormGroup.value).subscribe(
+    this.movie=this.movieFormGroup.value;
+    const lesThemes=this.movieFormGroup.controls['themes'].value;
+    console.log(lesThemes);
+    this.movie.themes="[";
+    console.log(this.movie);
+    for (let i = 0; i < lesThemes.length; i++) {
+      this.movie.themes=this.movie.themes+'"'+lesThemes[i]+'"';
+      if(i!=lesThemes.length-1){
+        this.movie.themes=this.movie.themes+",";
+      }
+    }
+    this.movie.themes=this.movie.themes+"]";
+
+    console.log(this.movie);
+      this.movieService.addMovie(this.movie).subscribe(
       (data) =>{
         this.openSuccessSnackBar();
         console.log("Ajouté avec succès !");
@@ -44,11 +60,15 @@ export class AddMovieComponent implements OnInit {
     );
  
   }
+
+  public get themes(){
+    return this.movieFormGroup.get('themes') as FormArray;
+  }
   isInvalidTitre(){
     return this.movieFormGroup.controls['titre'].invalid && this.movieFormGroup.controls['titre'].touched;
   }
-  isInvalidGenre(){
-    return this.movieFormGroup.controls['themes'].invalid && this.movieFormGroup.controls['themes'].touched;
+  isInvalidRealisateur(){
+    return this.movieFormGroup.controls['realisateur'].invalid && this.movieFormGroup.controls['realisateur'].touched;
   }
   isInvalidImage(){
     return this.movieFormGroup.controls['posterURL'].invalid && this.movieFormGroup.controls['posterURL'].touched;
@@ -77,5 +97,13 @@ export class AddMovieComponent implements OnInit {
       duration: 5000,
       panelClass: 'notif-success',
     });
+  }
+  onAjouterTheme(){
+    
+    this.themes.push(this._formBuilder.control(''));
+    for(let t of this.themes.controls){
+      console.log(t.value);
+    }
+    console.log(this.movieFormGroup.controls['themes'].value);
   }
 }

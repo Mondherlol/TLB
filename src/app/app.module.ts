@@ -12,6 +12,9 @@ import { ErrorPageComponent } from './util/error-page/error-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CatalogueMoviesComponent } from './main/catalogue-movies/catalogue-movies.component';
+import { MovieComponent } from './main/movie/movie.component';
+import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
 
 
 @NgModule({
@@ -22,6 +25,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     GamesComponent,
     AddMovieComponent,
     ErrorPageComponent,
+    CatalogueMoviesComponent,
+    MovieComponent,
+    
 
   ],
   imports: [
@@ -32,7 +38,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatSnackBarModule,
     BrowserModule,
     BrowserAnimationsModule,
-
+    YouTubePlayerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

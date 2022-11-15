@@ -16,4 +16,14 @@ export class MoviesService {
   addMovie(movie:any):Observable<any>{
     return this.http.post(`${this.baseUrl}`,movie);
   };
+  deleteMovie(id: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+  updateMovie(id: string, movie: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/${id}`, movie);
+  }
+  getMovieById(id:any):Observable<any> {
+    return this.http.get(`${this.baseUrl}/${id}`);
+  }
 }
+

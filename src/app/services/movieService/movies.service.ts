@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MoviesService {
-  private baseUrl = "http://localhost:3000/api/movie"
-
+  // private baseUrl = "http://localhost:3000/api/movie"
+  private baseUrl = "https://backendtlb.onrender.com/api/movie"
   constructor(private http: HttpClient) { }
   getAllMovies():Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl);

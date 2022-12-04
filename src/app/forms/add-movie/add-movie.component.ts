@@ -19,7 +19,6 @@ export class AddMovieComponent implements OnInit {
 
   ngOnInit(): void {
     this.movieFormGroup = this._formBuilder.group({
-      _id:['69'],
       titre:['',Validators.required],
       anneeSortie:[2022,Validators.required],
       description:['',Validators.required],

@@ -1,0 +1,65 @@
+
+<main class="bg-image" style="background-image: url('https://mrserie.fr/wp-content/uploads/2021/11/Netflix-Background-1.jpg'); height: 100vh; background-size: cover;">
+
+
+<section class="vh-100 " >
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-10">
+          <div class="card" style="border-radius: 1rem;">
+            <div class="row g-0">
+              <div class="col-md-6 col-lg-5 d-none d-md-block ">
+                 <img
+                  src="https://media.gq.com/photos/5de68aa26d3bed00084df580/master/pass/Best-Movies-of-2019-GQ-2019-120319.jpg"
+                  alt="login form"
+                  class="img-fluid" style="border-radius: 1rem 0 0 1rem;  height: 100%; object-fit: cover;"
+                /> 
+        
+                 
+              
+              </div>
+              <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                <div class="card-body p-4 p-lg-5 text-black">
+  
+                  <form [formGroup]="loginFormGroup" (ngSubmit)="connexion()">
+  
+                    <div class="d-flex align-items-center mb-3 pb-1">
+                      <span class="h1 fw-bold me-3">
+                          <h2>Connexion</h2>
+                      </span>
+                    </div>
+  
+                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Connectez-vous à votre compte TLB.</h5>
+          
+
+                    <mdb-form-control>
+                      <div class="form-outline mb-4">
+                        <input  formControlName="email" mdbInput type="text" id="email" class="form-control form-control-lg"  />
+                        <label mdbLabel  class="form-label" for="email">Votre e-mail</label>
+                      </div>
+                    </mdb-form-control>
+                    <mdb-form-control>
+                      <div class="form-outline mb-4">
+                        <input mdbInput formControlName="mdp"  class="form-control form-control-lg" type="password"  id="mdp" />                        <label mdbLabel  class="form-label" for="mdp">Mot de passe</label>
+                        <label mdbLabel  class="form-label" for="mdp">Mot de passe</label>
+
+                      </div>
+                  </mdb-form-control>
+                    <div class="pt-1 mb-4">
+                      <button class="btn btn-dark btn-lg btn-block" style="background-color: #dc3545;" type="submit" >Connexion</button>
+                    </div>
+  
+                    <a routerLink="/conditions-d-utilisations" class="small text-muted">Conditions d'utilisation</a><br>
+                    <a routerLink="/politique" class="small text-muted">Politique de confidentialité</a>
+                  </form>
+  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>

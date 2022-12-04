@@ -15,6 +15,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CatalogueMoviesComponent } from './main/catalogue-movies/catalogue-movies.component';
 import { MovieComponent } from './main/movie/movie.component';
 import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
+import { LoginComponent } from './forms/login/login.component';
+import { SignupComponent } from './forms/signup/signup.component';
+import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
+import { MdbCollapseModule } from 'mdb-angular-ui-kit/collapse';
+import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
 
 
 @NgModule({
@@ -27,6 +32,8 @@ import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
     ErrorPageComponent,
     CatalogueMoviesComponent,
     MovieComponent,
+    LoginComponent,
+    SignupComponent,
     
 
   ],
@@ -38,7 +45,10 @@ import { YouTubePlayer, YouTubePlayerModule } from '@angular/youtube-player';
     MatSnackBarModule,
     BrowserModule,
     BrowserAnimationsModule,
-    YouTubePlayerModule
+    YouTubePlayerModule,
+    MdbFormsModule,
+    MdbCollapseModule,
+    MdbDropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

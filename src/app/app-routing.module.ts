@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddMovieComponent } from './forms/add-movie/add-movie.component';
+import { LoginComponent } from './forms/login/login.component';
+import { SignupComponent } from './forms/signup/signup.component';
 import { AccueilComponent } from './main/accueil/accueil.component';
 import { CatalogueMoviesComponent } from './main/catalogue-movies/catalogue-movies.component';
 import { GamesComponent } from './main/games/games.component';
@@ -13,6 +15,8 @@ const routes: Routes = [
   {path:'catalogueMovies',component:CatalogueMoviesComponent},
   {path:'movie/:idMovie',component:MovieComponent},
   {path:'addMovie',component:AddMovieComponent},
+  {path:'login',component:LoginComponent},
+  {path:'signup',component:SignupComponent},
   {path:'',redirectTo:'accueil',pathMatch:'full'},
   {path:'**',component:ErrorPageComponent}
 

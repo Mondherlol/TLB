@@ -105,8 +105,9 @@
                               mdbDropdownToggle
                               aria-expanded="false"
                             >
+                              {{ currentUser.pseudo | uppercase }}
                               <img
-                                src="https://mdbootstrap.com/img/Photos/Avatars/img (31).webp"
+                                src="{{currentUser.pdp}}"
                                 class="rounded-circle"
                                 height="35"
                                 alt=""

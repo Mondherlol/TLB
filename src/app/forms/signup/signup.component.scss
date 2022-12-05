@@ -18,3 +18,22 @@
     // /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     // background: linear-gradient(to right,rgb(84, 22, 144),rgb(255, 73, 73),rgb(255, 141, 41),rgb(255, 205, 56) )
     // }
+
+input{
+
+     background-color: #f5f5f5!important;
+     border-bottom: 1px solid grey!important;
+     border-bottom-right-radius:0px!important;
+     border-bottom-left-radius:0px!important;
+
+}
+input.ng-dirty.ng-invalid {
+    background-color: rgba(223, 126, 126, 0.197)!important;
+    color:brown;
+    border-bottom: 1px solid red!important;
+
+  }
+  .erreur{
+    color:brown;
+  }
+  

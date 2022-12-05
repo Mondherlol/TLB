@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { UsersComponent } from './admin/users/users.component';
 import { AddMovieComponent } from './forms/add-movie/add-movie.component';
 import { LoginComponent } from './forms/login/login.component';
 import { SignupComponent } from './forms/signup/signup.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path:'addMovie',component:AddMovieComponent},
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
+  {path:'users',component:UsersComponent},
   {path:'',redirectTo:'accueil',pathMatch:'full'},
   {path:'**',component:ErrorPageComponent}
 

@@ -7,13 +7,17 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
   private baseUrl = "http://localhost:3000/api/user/";
-
+  
   constructor(
     private http : HttpClient,
     ){ }
 
   currentUser : Observable<any> = new Observable<any>;
   userToken: any;
+
+  userExist(user:any):Observable<any>{
+    return  this.http.post(`${this.baseUrl}exist`,user);
+   }
 
   signup(user: any):Observable<any>{
     return this.http.post(`${this.baseUrl}signup`,user);
@@ -23,5 +27,14 @@ export class UserService {
     return this.http.post(`${this.baseUrl}login`,user);
   };
 
-
+  isConnected():boolean{
+  return  localStorage.getItem('TOKEN') != null && localStorage.getItem('TOKEN') != undefined;
+  }
+  getAllUsers():Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl);
+  };
+  deleteUser(id: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+ 
 }

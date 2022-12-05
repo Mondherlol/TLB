@@ -1,62 +1,104 @@
 
+<section class="bg-image"
+  style="background-image: url('https://mrserie.fr/wp-content/uploads/2021/11/Netflix-Background-1.jpg');     height: 110vh!important;">
+  
 
-<section class="vh-100 bg-image"
-  style="background-image: url('https://mrserie.fr/wp-content/uploads/2021/11/Netflix-Background-1.jpg');">
   <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-    <div class="container h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="container vh-100">
+      <div class="row d-flex justify-content-center align-items-center vh-100">
+        
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
           <div class="card" style="border-radius: 15px;">
             <div class="card-body p-5">
-              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+              <h2 class="text-uppercase text-center mb-5">Créez votre compte</h2>
 
               <form [formGroup]="signUpFormGroup" (ngSubmit)="inscrire()">
                 <mdb-form-control>
                 <div class="form-outline mb-4">
                   <input formControlName="pseudo" mdbInput type="text" id="form3Example1cg" class="form-control form-control-lg"  />
-                  <label mdbLabel  class="form-label" for="form3Example1cg">Your Name</label>
+                  <label mdbLabel  class="form-label" for="form3Example1cg">Votre Pseudo </label>
+                  <div class="erreur" *ngIf="isInvalidPseudo()" >
+                    Le pseudo est obligatoire
+                    </div>
+                    <div class="erreur" *ngIf="isShortPseudo()" >
+                      Le pseudo doit faire au moins 4 caractères
+                      </div>
                 </div>
                 </mdb-form-control>
                 <mdb-form-control>
                 <div class="form-outline mb-4">
-                  <input formControlName="email"  mdbInput  type="email" id="form3Example3cg" class="form-control form-control-lg" />
-                  <label mdbLabel   class="form-label" for="form3Example3cg">Your Email</label>
+                  <input formControlName="email"  mdbInput  type="email" id="form3Example3cg" class="form-control form-control-lg" (change)="resetEmail()"/>
+                  <label mdbLabel   class="form-label" for="form3Example3cg">Votre email</label>
+                  <div class="erreur" *ngIf="isIncorrectEmail()" >
+                    Format du mail incorrect
+                    </div>
+                  <div class="erreur" *ngIf="isInvalidEmail()" >
+                    L'email est obligatoire
+                    </div>
+                    <div class="erreur" *ngIf="isAlreadyUsedEmail" >
+                      Cette adresse existe déjà pour un autre compte ! 
+                      </div>
+                 
+                </div>
+                </mdb-form-control>
+          
+                <mdb-form-control>
+                <div class="form-outline form-auth-mdb mb-4">
+                  <input formControlName="mdp" mdbInput type="password" id="form3Example4cg" class="form-control form-control-lg"  />
+                  <label mdbLabel class="form-label" for="form3Example4cg">Mot de passe</label>
+                  <div class="erreur" *ngIf="isInvalidMdp()" >
+                    Mot de passe obligatoire
+                    </div>
+                    <div class="erreur" *ngIf="isShortMdp()" >
+                      Le Mot de passe doit faire au moins 5 caractères
+                      </div>
                 </div>
                 </mdb-form-control>
                 <mdb-form-control>
                 <div class="form-outline mb-4">
-                  <input formControlName="mdp" mdbInput type="password" id="form3Example4cg" class="form-control form-control-lg" />
-                  <label mdbLabel class="form-label" for="form3Example4cg">Password</label>
-                </div>
-                </mdb-form-control>
-                <mdb-form-control>
-                <div class="form-outline mb-4">
-                  <input  formControlName="mdp2" mdbInput type="password" id="form3Example4cdg" class="form-control form-control-lg" />
-                  <label mdbLabel class="form-label" for="form3Example4cdg">Repeat your password</label>
+                  <input  formControlName="confirmMdp" mdbInput type="password" id="form3Example4cdg" class="form-control form-control-lg" />
+                  <label mdbLabel class="form-label" for="form3Example4cdg">Répetez votre mot de passe</label>
+                  <div class="erreur" *ngIf="signUpFormGroup.hasError('notSame')" >
+                    Les mots de passe ne correspondent pas
+                    </div>
                 </div>
 
                 </mdb-form-control>
                 <div class=" mb-4">
                 <label class="form-label" for="customFile">Ajoutez une photo de profil</label>
-                <input formControlName="pdp" type="file" class="form-control" id="customFile"  accept="image/png, image/gif, image/jpeg"/>
+                <input formControlName="pdp" 
+                name="pdp"
+                type="file" 
+                class="form-control" 
+                id="customFile" 
+                 accept="image/png, image/gif, image/jpeg" 
+                 (input)="filechoosen($event)"
+
+                 />
+                <div class="erreur" *ngIf="isInvalidPdp()"  >
+                  Veuillez selectionner une photo de profil.
+                  </div>
+               
 
                 </div>
-                <mdb-form-control>
-
+          
+                <div class="form-group">
                 <div class="form-check d-flex justify-content-center mb-5">
-                  <input  mdbInput class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
-                  <label mdbLabel  class="form-check-label" for="form2Example3g">
-                    I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
+                  <input   class="form-check-input " type="checkbox" value="" id="conditions" />
+                  <label   class="form-check-label" for="conditions">
+                    J'accepte les  <a href="#!" class="text-body"><u>conditions d'utilisations</u></a>
                   </label>
                 </div>
-                </mdb-form-control>
+                </div>
+                
+  
 
                 <div class="d-flex justify-content-center">
-                  <button type="submit" style="color:white!important"
-                    class="btn btn-primary btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                  <button type="submit" style="color:white!important" [disabled]="signUpFormGroup.invalid"
+                    class="btn btn-primary btn-block btn-lg gradient-custom-4 text-body">S'inscrire</button>
                 </div>
 
-                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a routerLink="/login"
+                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a routerLink="/login" style="cursor: pointer;"
                     class="fw-bold text-body"><u>Login here</u></a></p>
          
               </form>
@@ -68,4 +110,3 @@
     </div>
   </div>
 </section>
-    

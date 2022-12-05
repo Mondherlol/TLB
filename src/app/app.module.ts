@@ -20,6 +20,9 @@ import { SignupComponent } from './forms/signup/signup.component';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { MdbCollapseModule } from 'mdb-angular-ui-kit/collapse';
 import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
+import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
+import { UsersComponent } from './admin/users/users.component';
+
 
 
 @NgModule({
@@ -34,6 +37,7 @@ import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
     MovieComponent,
     LoginComponent,
     SignupComponent,
+    UsersComponent,
     
 
   ],
@@ -48,7 +52,8 @@ import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
     YouTubePlayerModule,
     MdbFormsModule,
     MdbCollapseModule,
-    MdbDropdownModule
+    MdbDropdownModule,
+    MdbCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

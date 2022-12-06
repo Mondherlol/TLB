@@ -22,6 +22,7 @@ import { MdbCollapseModule } from 'mdb-angular-ui-kit/collapse';
 import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 import { UsersComponent } from './admin/users/users.component';
+import { MovieCommentsComponent } from './components/movie-comments/movie-comments.component';
 
 
 
@@ -38,6 +39,7 @@ import { UsersComponent } from './admin/users/users.component';
     LoginComponent,
     SignupComponent,
     UsersComponent,
+    MovieCommentsComponent,
     
 
   ],

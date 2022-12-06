@@ -16,6 +16,8 @@ export class MovieComponent implements OnInit {
 
   private routeSub:Subscription=new Subscription();
   movie:any;
+  notes : number [] = [];
+  moyenne = 0;
   idMovie:any;
   urlTrailer:any;
   constructor(private movieService:MoviesService,     private route: ActivatedRoute , private _sanitizer: DomSanitizer  ) { }
@@ -27,10 +29,20 @@ export class MovieComponent implements OnInit {
 
     this.routeSub = this.route.params.subscribe((params) => {
       this.idMovie = params['idMovie'];
-      console.log(this.idMovie)
       this.movieService.getMovieById(this.idMovie).subscribe((data) => {
         this.movie = data;
-        this.videoId=this.youtube_parser(this.movie.trailerURL);
+        this.movie.commentaires.forEach((c: any) => {
+          console.log(c);
+            this.notes.push(c.note);
+            this.moyenne+=c.note;
+    
+        });
+        this.moyenne=this.moyenne/this.notes.length;
+        console.log(this.moyenne);
+        console.log(this.notes);
+        this.videoId=this.youtube_parser(this.movie.trailerURL); //peut causer erreur 
+
+
        
       });
     });

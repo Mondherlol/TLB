@@ -1,0 +1,150 @@
+<div *ngFor="let c of movie.commentaires">
+    <h2>{{c.note}}</h2>
+</div>
+
+Importation de  {{movie.titre}} marche !
+<div class="container-fluid px-1 py-5 mx-auto">
+	<div class="row justify-content-center">
+		<div class="col-xl-7 col-lg-8 col-md-10 col-12 text-center mb-5">
+			<div class="card">
+				<div class="row justify-content-left d-flex">
+					<div class="col-md-4 d-flex flex-column">
+						<div class="rating-box">
+							<h1 class="pt-4">{{moyenne}}</h1>
+							<p class="">/ 20 </p>
+						</div>
+						<div>
+							<span class="fa fa-star star-active mx-1"></span>
+							<span class="fa fa-star star-active mx-1"></span>
+							<span class="fa fa-star star-active mx-1"></span>
+							<span class="fa fa-star star-active mx-1"></span>
+							<span class="fa fa-star star-inactive mx-1"></span>
+						</div>
+					</div>
+					<div class="col-md-8">
+						<div class="rating-bar0 justify-content-center">
+							<table class="text-left mx-auto">
+								<tr>
+									<td class="rating-label">Excellent</td>
+									<td class="rating-bar">
+										<div class="bar-container">
+									      <div class="bar-5" [ngStyle]="{'width.%': (this.excellent / this.notes.length ) * 100}"></div>
+									    </div>
+									</td>
+									<td class="text-right">{{excellent}}</td>
+								</tr>
+								<tr>
+									<td class="rating-label">Tres bon</td>
+									<td class="rating-bar">
+										<div class="bar-container">
+									      <div class="bar-4" [ngStyle]="{'width.%': (this.tresbon / this.notes.length ) * 100}"></div>
+									    </div>
+									</td>
+									<td class="text-right">{{tresbon}}</td>
+								</tr>
+								<tr>
+									<td class="rating-label">Bien</td>
+									<td class="rating-bar">
+										<div class="bar-container">
+									      <div class="bar-3"  [ngStyle]="{'width.%': (this.bon / this.notes.length ) * 100}"></div>
+									    </div>
+									</td>
+									<td class="text-right">{{bon}}</td>
+								</tr>
+								<tr>
+									<td class="rating-label">Moyen</td>
+									<td class="rating-bar">
+										<div class="bar-container">
+									      <div class="bar-2"  [ngStyle]="{'width.%': (this.moyen / this.notes.length ) * 100}"></div>
+									    </div>
+									</td>
+									<td class="text-right">{{moyen}}</td>
+								</tr>
+								<tr>
+									<td class="rating-label">Nul</td>
+									<td class="rating-bar" >
+										<div class="bar-container">
+									      <div class="bar-1"   [ngStyle]="{'width.%': (this.nul / this.notes.length ) * 100}"></div>
+									    </div>
+									</td>
+									<td class="text-right">{{nul}}</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="d-flex flex-row bd-highlight mb-3" >
+					<div >
+						<img class="profile-pic" src="https://i.imgur.com/V3ICjlm.jpg">
+					</div>
+					<div class="d-flex flex-column"  >
+						<h3 class="mt-2 mb-0" style="    font-size: 1.75rem;">Vikram jit Singh</h3>
+						<div>
+							<p class="text-start"><span class="text-muted">4.0</span>
+							<span class="fa fa-star star-active ml-3"></span>
+							<span class="fa fa-star star-active"></span>
+							<span class="fa fa-star star-active"></span>
+							<span class="fa fa-star star-active"></span>
+							<span class="fa fa-star star-inactive"></span></p>
+						</div>
+					</div>
+					<div class="ms-auto" >
+						<p class="text-muted pt-5 pt-sm-3">10 Sept</p>
+					</div>
+				</div>
+				<div class="row text-start">
+					<h4 class="blue-text " style="font-size: 1.5rem;">"An awesome activity to experience"</h4>
+					<p class="content">If you really ensdfsdfsdfdsqfsdf DSFQS FS FDS QDS QSDF QSDFQS DFQDS FQSDFQDS Fjoy spending your vacation 'on water' or would like to try something new and exciting for the first time.</p>
+				</div>
+			
+				<div class="flex-row d-flex text-start ">
+					<div class="like ms-3 vote">
+						<img src="https://i.imgur.com/mHSQOaX.png"><span class="blue-text pe-2">20</span>
+					</div>
+					<div class="unlike vote">
+						<img src="https://i.imgur.com/bFBO3J7.png"><span class="text-muted ">4</span>
+					</div>
+				</div>
+			</div>
+
+            <div class="card"  *ngFor="let c of movie.commentaires">
+				<div class="d-flex flex-row bd-highlight mb-3" >
+					<div >
+						<img class="profile-pic" src="{{c.pdpUser}}">
+					</div>
+					<div class="d-flex flex-column"  >
+						<h3 class="mt-2 mb-0" style="    font-size: 1.75rem;">{{c.pseudoUser}}</h3>
+						<div>
+							<p class="text-start"><span class="text-muted">{{c.note}}</span>
+							<span class="fa fa-star star-active ml-3"></span>
+							<span class="fa fa-star star-active"></span>
+							<span class="fa fa-star star-active"></span>
+							<span class="fa fa-star star-active"></span>
+							<span class="fa fa-star star-inactive"></span></p>
+						</div>
+					</div>
+					<div class="ms-auto" >
+						<p class="text-muted pt-5 pt-sm-3">{{c.datePublication | date }}</p>
+					</div>
+				</div>
+				<div class="row text-start">
+					<h4 class="blue-text " style="font-size: 1.5rem;">"{{c.avisCourt}}"</h4>
+					<p class="content">{{c.avisLong}}</p>
+				</div>
+			
+				<div class="flex-row d-flex text-start ">
+					<div class="like ms-3 vote" (click)="addLike(movie._id,c._id)">
+						<img src="https://i.imgur.com/mHSQOaX.png"><span class="blue-text pe-2">{{c.like}}</span>
+					</div>
+					<div class="unlike vote">
+						<img src="https://i.imgur.com/bFBO3J7.png"><span class="text-muted ">{{c.dislike}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

@@ -9,7 +9,6 @@ import { UserService } from 'src/app/services/movieService/user.service';
 })
 export class NavbarComponent implements OnInit {
   connecte:Boolean=false;
-  pseudo="Mondher Mhamdi";
 
   currentUser:any;
   constructor(private router:Router, private userService:UserService

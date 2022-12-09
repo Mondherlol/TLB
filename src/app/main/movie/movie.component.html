@@ -1,39 +1,105 @@
-<p>movie works!</p>
+<div class="container principal">
+    <div class="d-flex flex-row bd-highlight mb-3">
 
+        <div class="p-2 bd-highlight">Flex item 1</div>
+        <div class="p-2 bd-highlight">Flex item 2</div>
+        <div class="p-2 bd-highlight">Flex item 3</div>
 
-<h1>{{movie.titre}}</h1>
-<p>{{movie.description}}</p>
-
-<!-- <iframe 
-         
-
-           
-src={{urlTrailer}}
-iv_load_policy="3"
-title="YouTube video player" 
-frameborder="0"
- allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen></iframe> -->
-
-  <div class="flex flex-col flex-auto w-full h-full xs:p-2  " style="background-color: red">
-    <div class="row">
-        <div class="col-md-3">
-            <h1>{{movie.titre}}</h1>
+      <div class="p-2 bd-highlight">
+        <div class="d-flex flex-column bd-highlight mb-3">
+          <div class="p-2 flex-fill bd-highlight">
+            <div class="row">
+            <div class="example-2 card">
+              <div class="wrapper">
+                <div class="header">
+                  <div class="date">
+                    <span class="day">12</span>
+                    <span class="month">Aug</span>
+                    <span class="year">2016</span>
+                  </div>
+                  <ul class="menu-content">
+                    <li>
+                      <a href="#" class="fa fa-bookmark-o"></a>
+                    </li>
+                    <li><a href="#" class="fa fa-heart-o"><span>18</span></a></li>
+                    <li><a href="#" class="fa fa-comment-o"><span>3</span></a></li>
+                  </ul>
+                </div>
+                <div class="data">
+                  <div class="content">
+                    <span class="author">Jane Doe</span>
+                    <h1 class="title"><a href="#">Stranger Things: The sound of the Upside Down</a></h1>
+                    <p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
+                    <a href="#" class="button">Read more</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="p-2 bd-highlight">Flex item 2</div>
+          <div class="p-2 bd-highlight">Flex item 3</div>
         </div>
-        <div class="col-md-3">
+      </div>  
+  </div>
+</div>
+
+
+
+
+<div class="container">
+    <div class="d-flex bd-highlight">
+      <div >
+        <h1>{{movie.titre}}</h1>
+  
+      
             <youtube-player 
             #player
             [videoId]="videoId"
             (ready)="onReady()"
             (stateChange)="onStateChange($event)"
           ></youtube-player>
-        </div>
-
-
+     
+        <p>{{movie.description}}</p>
+      </div>
+        
+  
 </div>
-  </div>
+</div>
 
-  <app-movie-comments [movie]="movie" [moyenne]="moyenne" [notes]="notes"></app-movie-comments>
+<div *ngFor="let m of movies" class="row">
+  <div class="example-2 card">
+    <div class="wrapper">
+      <div class="header">
+        <div class="date">
+          <span class="day">12</span>
+          <span class="month">Aug</span>
+          <span class="year">2016</span>
+        </div>
+        <ul class="menu-content">
+          <li>
+            <a href="#" class="fa fa-bookmark-o"></a>
+          </li>
+          <li><a href="#" class="fa fa-heart-o"><span>18</span></a></li>
+          <li><a href="#" class="fa fa-comment-o"><span>3</span></a></li>
+        </ul>
+      </div>
+      <div class="data">
+        <div class="content">
+          <span class="author">Jane Doe</span>
+          <h1 class="title"><a href="#">Stranger Things: The sound of the Upside Down</a></h1>
+          <p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
+          <a href="#" class="button">Read more</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+  <app-movie-comments [movie]="movie" [moyenne]="moyenne" [notes]="notes" (refresh)="refresh()" ></app-movie-comments>
 
 
   

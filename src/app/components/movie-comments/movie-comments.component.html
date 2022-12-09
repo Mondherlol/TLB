@@ -1,24 +1,18 @@
-<div *ngFor="let c of movie.commentaires">
-    <h2>{{c.note}}</h2>
-</div>
 
-Importation de  {{movie.titre}} marche !
 <div class="container-fluid px-1 py-5 mx-auto">
 	<div class="row justify-content-center">
-		<div class="col-xl-7 col-lg-8 col-md-10 col-12 text-center mb-5">
+	
+		<div class="col-xl-7 col-lg-8 col-md-15 col-12 text-center mb-5">
 			<div class="card">
 				<div class="row justify-content-left d-flex">
 					<div class="col-md-4 d-flex flex-column">
 						<div class="rating-box">
-							<h1 class="pt-4">{{moyenne}}</h1>
+							<h1 class="pt-4">{{moyenne | number : '1.2-2' }}</h1>
 							<p class="">/ 20 </p>
 						</div>
 						<div>
-							<span class="fa fa-star star-active mx-1"></span>
-							<span class="fa fa-star star-active mx-1"></span>
-							<span class="fa fa-star star-active mx-1"></span>
-							<span class="fa fa-star star-active mx-1"></span>
-							<span class="fa fa-star star-inactive mx-1"></span>
+							<h2 style="font-size: 2em" ><i  class="ml-3 star"  [attr.data-star]="moyenne/4"  > </i></h2>
+
 						</div>
 					</div>
 					<div class="col-md-8">
@@ -74,42 +68,9 @@ Importation de  {{movie.titre}} marche !
 					</div>
 				</div>
 			</div>
-			<div class="card">
-				<div class="d-flex flex-row bd-highlight mb-3" >
-					<div >
-						<img class="profile-pic" src="https://i.imgur.com/V3ICjlm.jpg">
-					</div>
-					<div class="d-flex flex-column"  >
-						<h3 class="mt-2 mb-0" style="    font-size: 1.75rem;">Vikram jit Singh</h3>
-						<div>
-							<p class="text-start"><span class="text-muted">4.0</span>
-							<span class="fa fa-star star-active ml-3"></span>
-							<span class="fa fa-star star-active"></span>
-							<span class="fa fa-star star-active"></span>
-							<span class="fa fa-star star-active"></span>
-							<span class="fa fa-star star-inactive"></span></p>
-						</div>
-					</div>
-					<div class="ms-auto" >
-						<p class="text-muted pt-5 pt-sm-3">10 Sept</p>
-					</div>
-				</div>
-				<div class="row text-start">
-					<h4 class="blue-text " style="font-size: 1.5rem;">"An awesome activity to experience"</h4>
-					<p class="content">If you really ensdfsdfsdfdsqfsdf DSFQS FS FDS QDS QSDF QSDFQS DFQDS FQSDFQDS Fjoy spending your vacation 'on water' or would like to try something new and exciting for the first time.</p>
-				</div>
-			
-				<div class="flex-row d-flex text-start ">
-					<div class="like ms-3 vote">
-						<img src="https://i.imgur.com/mHSQOaX.png"><span class="blue-text pe-2">20</span>
-					</div>
-					<div class="unlike vote">
-						<img src="https://i.imgur.com/bFBO3J7.png"><span class="text-muted ">4</span>
-					</div>
-				</div>
-			</div>
-
-            <div class="card"  *ngFor="let c of movie.commentaires">
+			<div *ngFor="let c of movie.commentaires ; let i = index">
+            <div class="card"   *ngIf=" c.idUser != currentUser?._id">
+				
 				<div class="d-flex flex-row bd-highlight mb-3" >
 					<div >
 						<img class="profile-pic" src="{{c.pdpUser}}">
@@ -117,12 +78,8 @@ Importation de  {{movie.titre}} marche !
 					<div class="d-flex flex-column"  >
 						<h3 class="mt-2 mb-0" style="    font-size: 1.75rem;">{{c.pseudoUser}}</h3>
 						<div>
-							<p class="text-start"><span class="text-muted">{{c.note}}</span>
-							<span class="fa fa-star star-active ml-3"></span>
-							<span class="fa fa-star star-active"></span>
-							<span class="fa fa-star star-active"></span>
-							<span class="fa fa-star star-active"></span>
-							<span class="fa fa-star star-inactive"></span></p>
+							<h2 > <span  > {{c.note}}</span> <span class="text-muted ">/20 </span> <i  class="ml-3 star"  [attr.data-star]="c.note/4"  > </i></h2>
+
 						</div>
 					</div>
 					<div class="ms-auto" >
@@ -135,13 +92,94 @@ Importation de  {{movie.titre}} marche !
 				</div>
 			
 				<div class="flex-row d-flex text-start ">
-					<div class="like ms-3 vote" (click)="addLike(movie._id,c._id)">
+					<div class="like ms-3 vote" (click)="addLike(movie._id,c._id,i)">
 						<img src="https://i.imgur.com/mHSQOaX.png"><span class="blue-text pe-2">{{c.like}}</span>
 					</div>
-					<div class="unlike vote">
+					<div class="unlike vote" (click)="addDislike(movie._id,c._id,i)">
 						<img src="https://i.imgur.com/bFBO3J7.png"><span class="text-muted ">{{c.dislike}}</span>
 					</div>
 				</div>
+			</div>
+			</div>
+		</div>
+		<div class="col-xl-4 col-lg-4 col-md-15 col-12 text-center mb-5">
+			<div class="card" *ngIf="connecte && !avis">
+				<div class="d-flex flex-row bd-highlight mb-3">
+					<img  src="{{currentUser.pdp}}" class="profile-pic">
+					<div>	
+						<h3 class="mt-2 mb-0 " style="    font-size: 1.75rem;">  {{currentUser.pseudo}} </h3>
+						<h2  class="text-muted  ">Pas encore d'avis</h2>
+					</div> 
+					
+				</div>
+				<h1>Notez ce film maintenant :</h1>
+	
+				<form class="d-bloc" [formGroup]="commentFormGroup" (ngSubmit)="addNote()">
+					
+					<label class="titre-section-avis" for="note">Sélectionnez votre note :</label>
+					<div class="contour-note">
+						<select  class="select_notes " id="note" formControlName="note">
+							<option value="null">--</option>
+							<option *ngFor="let i of numbers" value="{{i}}" >{{i}}</option>
+						</select>
+						<div class="bloc-avis-note">
+							<em>/</em> <span>20</span>
+						</div>
+					</div>
+					<br>
+					<div>
+						<label class="titre-section-avis" for="titre" >Votre avis en quelques mots :</label> <br>
+						<input  formControlName="avisCourt" class="form-control" type="text" id="titre" placeholder="Titre de votre avis">
+					</div>
+					<div>
+						<label class="titre-section-avis" for="titre" >Votre avis complet :</label> <br>
+						<textarea formControlName="avisLong" class="form-control" placeholder="Qu'avez vous penser de ce film ?"></textarea>	
+					</div>
+				
+					<button type="submit" id="valider">VALIDER</button>
+				</form>	
+			</div>
+			<div class="card" *ngIf="!connecte">
+				<div class="d-flex flex-row bd-highlight mb-3">
+					<img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3d8QKDpPCuKQ8e1y0KuxR5dzT5mKeMtxANIVLM7s2YByc-ZDJmDOazuEV1ZsRTBCo3-s&usqp=CAU" class="profile-pic">
+					<div>	
+						<h3 class="mt-2 mb-0 " style="    font-size: 1.75rem;"> Pas connecté. </h3>
+						<h2  class="text-muted  ">Pas encore d'avis</h2>
+					</div> 
+					
+				</div>
+				<h1>Notez ce film maintenant :</h1>
+				<button routerLink="/login" class="btn btn-primary" >Connectez-vous maintenant pour donner votre avis !</button>
+			
+			</div>
+			<div class="card" *ngIf="connecte && avis">
+				<button class="btn btn-danger supprimer" (click)="deleteComment()">  <i class="fas fa-trash-can"></i> </button>
+				<div class="d-flex flex-row bd-highlight mb-3">
+					<img  src="{{currentUser.pdp}}" class="profile-pic">
+					<div>	
+						<h3 class="mt-2 mb-0 " style="    font-size: 1.75rem;">  {{currentUser.pseudo}} </h3>
+						<div>
+							<h2 > <span  > {{userCommentaire.note}}</span> <span class="text-muted ">/20 </span> <i  class="ml-3 star"  [attr.data-star]="userCommentaire.note/4"  > </i></h2>
+									
+						
+						</div>
+				
+					</div> 
+					
+				</div>
+				<div class="row text-start">
+					<h4 class="blue-text " style="font-size: 1.5rem;">"{{userCommentaire.avisCourt}}"</h4>
+					<p class="content">{{userCommentaire.avisLong}}</p>
+				</div>
+				<div class="flex-row d-flex text-start ">
+					<div class="like ms-3 vote" >
+						<img src="https://i.imgur.com/mHSQOaX.png"><span class="blue-text pe-2">{{userCommentaire.like}}</span>
+					</div>
+					<div class="unlike vote" >
+						<img src="https://i.imgur.com/bFBO3J7.png"><span class="text-muted "> {{userCommentaire.dislike}}</span>
+					</div>
+				</div>
+			
 			</div>
 		</div>
 	</div>

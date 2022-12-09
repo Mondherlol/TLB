@@ -15,6 +15,7 @@ export class MovieComponent implements OnInit {
   videoId: string="";
 
   private routeSub:Subscription=new Subscription();
+  movies:any[] =[];
   movie:any;
   notes : number [] = [];
   moyenne = 0;
@@ -23,6 +24,8 @@ export class MovieComponent implements OnInit {
   constructor(private movieService:MoviesService,     private route: ActivatedRoute , private _sanitizer: DomSanitizer  ) { }
 
   ngOnInit(): void {
+    this.moyenne = 0;
+    this.notes =[];
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     document.body.appendChild(tag);
@@ -38,13 +41,19 @@ export class MovieComponent implements OnInit {
     
         });
         this.moyenne=this.moyenne/this.notes.length;
-        console.log(this.moyenne);
-        console.log(this.notes);
+        if (Number.isNaN(this.moyenne)) {this.moyenne=0;}
         this.videoId=this.youtube_parser(this.movie.trailerURL); //peut causer erreur 
 
 
        
       });
+    });
+    this.movieService.getAllMovies().subscribe((data)=>{
+      this.movies = data;
+     for (let i = 0; i < this.movies.length; i++) {
+        this.movies[i].themes=JSON.parse(data[i].themes);
+     }
+  
     });
   }
   ngOnDestroy() {
@@ -66,4 +75,8 @@ export class MovieComponent implements OnInit {
     return (match&&match[7].length==11)? match[7] : false;
 
 }
+
+  refresh(){
+    this.ngOnInit();
+  }
 }

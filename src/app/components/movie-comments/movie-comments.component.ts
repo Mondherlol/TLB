@@ -13,14 +13,7 @@ import { UserService } from 'src/app/services/movieService/user.service';
 })
 export class MovieCommentsComponent implements OnInit {
    @Input() movie :any;
-   @Input() moyenne:any;
-   @Input() notes:any;
    @Output("refresh") refresh: EventEmitter <any> = new EventEmitter();
-   excellent=0;
-   tresbon=0;
-   bon=0;
-   moyen=0;
-   nul=0;
    numbers = Array(21).fill(1).map((x,i)=>i);
    connecte=false;
    avis=false;
@@ -33,18 +26,15 @@ export class MovieCommentsComponent implements OnInit {
 
     //verifier si connecté et recuperer utilisateur connecté
     this.connecte= this.userService.isConnected();
-    console.log(" connecte : "+this.userService.isConnected());
     if( localStorage.getItem('currentUser') != null){
       this.currentUser = localStorage.getItem('currentUser');
       let x= JSON.parse(this.currentUser);
       this.currentUser=x;
-      console.log(this.currentUser);
     }
-    this.repartirNotes();
+
   
     //Récuperer commentaire utilisateur
     this.movie.commentaires.forEach((commentaire: any) => {
-      console.log(commentaire);
       if(commentaire.idUser == this.currentUser._id){
         this.avis=true;
         this.userCommentaire=commentaire;
@@ -55,12 +45,13 @@ export class MovieCommentsComponent implements OnInit {
       note:[,Validators.required],
       avisCourt:[,[Validators.required]],
       avisLong:[,[Validators.required]]
-    })
+    });
 
 
   }
 
   addNote(){
+   
     this.userCommentaire = this.commentFormGroup.value;
     this.userCommentaire.pseudoUser = this.currentUser.pseudo;
     this.userCommentaire.pdpUser = this.currentUser.pdp;
@@ -70,8 +61,8 @@ export class MovieCommentsComponent implements OnInit {
       this.userCommentaire.dislike=0;
       this.openSuccessSnackBar("Votre avis a été envoyé");
       this.refresh.emit();
-      this.notes.push(this.userCommentaire.note);
-      this.repartirNotes();
+
+
       
     })
   }
@@ -106,11 +97,8 @@ export class MovieCommentsComponent implements OnInit {
       if(response){
         var n = this.userCommentaire.note;
         this.commentaireService.deleteComment(this.movie._id).subscribe((data)=>{
-          console.log(data);
           this.avis=false;
-          const indexNoteToRemove = this.notes.indexOf(n);
-          this.notes.splice(indexNoteToRemove,1);
-          this.repartirNotes();
+
           this.refresh.emit();
 
   
@@ -135,24 +123,5 @@ export class MovieCommentsComponent implements OnInit {
       panelClass:  ['error-snackbar'],
     });
   }
-  repartirNotes(){
-    this.excellent = 0;
-    this.tresbon = 0;
-    this.bon = 0;
-    this.moyen=0;
-    this.nul=0;
-    this.notes.forEach((n: number) => {
-      if(n>=18){
-        this.excellent++;
-      }else if(n>=15){
-        this.tresbon++;
-      }else if(n>=12){
-        this.bon++;
-      }else if(n>=9){
-        this.moyen++;
-      }else {
-        this.nul++;
-      }
-    });
-  }
+
 }

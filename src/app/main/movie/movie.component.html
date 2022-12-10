@@ -1,105 +1,146 @@
-<div class="container principal">
-    <div class="d-flex flex-row bd-highlight mb-3">
+<div class="grid-conteneur">
+    <div class="grid-item"> 
+      <div class="d-flex bd-highlight">
+        <div >
+          <h1>{{movie.titre}}</h1>
+    
+        
+              <youtube-player 
+              #player
+              [videoId]="videoId"
+              (ready)="onReady()"
+              (stateChange)="onStateChange($event)"
+            ></youtube-player>
+       
+          <p>{{movie.description}}</p>
 
-        <div class="p-2 bd-highlight">Flex item 1</div>
-        <div class="p-2 bd-highlight">Flex item 2</div>
-        <div class="p-2 bd-highlight">Flex item 3</div>
-
-      <div class="p-2 bd-highlight">
-        <div class="d-flex flex-column bd-highlight mb-3">
-          <div class="p-2 flex-fill bd-highlight">
-            <div class="row">
-            <div class="example-2 card">
-              <div class="wrapper">
-                <div class="header">
-                  <div class="date">
-                    <span class="day">12</span>
-                    <span class="month">Aug</span>
-                    <span class="year">2016</span>
-                  </div>
-                  <ul class="menu-content">
-                    <li>
-                      <a href="#" class="fa fa-bookmark-o"></a>
-                    </li>
-                    <li><a href="#" class="fa fa-heart-o"><span>18</span></a></li>
-                    <li><a href="#" class="fa fa-comment-o"><span>3</span></a></li>
-                  </ul>
+          
+          <div >
+            <div class="row justify-content-left d-flex">
+              <div class="col-md-4 d-flex flex-column">
+                <div class="rating-box">
+                  <h1 class="pt-4">{{ movie.note | number : '1.2-2' }}</h1>
+                  <p class="">/ 20 </p>
                 </div>
-                <div class="data">
-                  <div class="content">
-                    <span class="author">Jane Doe</span>
-                    <h1 class="title"><a href="#">Stranger Things: The sound of the Upside Down</a></h1>
-                    <p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
-                    <a href="#" class="button">Read more</a>
-                  </div>
+                <div>
+                  <h2 style="font-size: 2em" ><i  class="ml-3 star"  [attr.data-star]=" movie.note /4"  > </i></h2>
+    
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="rating-bar0 justify-content-center">
+                  <table class="text-left mx-auto">
+                    <tr>
+                      <td class="rating-label">Excellent</td>
+                      <td class="rating-bar">
+                        <div class="bar-container">
+                            <div class="bar-5" [ngStyle]="{'width.%': (this.excellent / this.notes.length ) * 100}"></div>
+                          </div>
+                      </td>
+                      <td class="text-right">{{excellent}}</td>
+                    </tr>
+                    <tr>
+                      <td class="rating-label">Tres bon</td>
+                      <td class="rating-bar">
+                        <div class="bar-container">
+                            <div class="bar-4" [ngStyle]="{'width.%': (this.tresbon / this.notes.length ) * 100}"></div>
+                          </div>
+                      </td>
+                      <td class="text-right">{{tresbon}}</td>
+                    </tr>
+                    <tr>
+                      <td class="rating-label">Bien</td>
+                      <td class="rating-bar">
+                        <div class="bar-container">
+                            <div class="bar-3"  [ngStyle]="{'width.%': (this.bon / this.notes.length ) * 100}"></div>
+                          </div>
+                      </td>
+                      <td class="text-right">{{bon}}</td>
+                    </tr>
+                    <tr>
+                      <td class="rating-label">Moyen</td>
+                      <td class="rating-bar">
+                        <div class="bar-container">
+                            <div class="bar-2"  [ngStyle]="{'width.%': (this.moyen / this.notes.length ) * 100}"></div>
+                          </div>
+                      </td>
+                      <td class="text-right">{{moyen}}</td>
+                    </tr>
+                    <tr>
+                      <td class="rating-label">Nul</td>
+                      <td class="rating-bar" >
+                        <div class="bar-container">
+                            <div class="bar-1"   [ngStyle]="{'width.%': (this.nul / this.notes.length ) * 100}"></div>
+                          </div>
+                      </td>
+                      <td class="text-right">{{nul}}</td>
+                    </tr>
+                  </table>
                 </div>
               </div>
             </div>
+          </div>
+
+        </div>
+          
+    
+  </div> </div>
+    <div class="grid-item-2">
+        <div *ngFor="let m of moviesLike" class="example-2 card" >
+          <div class="wrapper" style="   background: url({{m.posterURL}}) center / cover no-repeat; cursor:pointer" routerLink="/movie/{{m._id}}">
+            <div class="header">
+              <div class="date">
+                <span class="day"><i  class="ml-3 star"  [attr.data-star]=" m.note /4"  > </i></span>
+            
+              </div>
+              <ul class="menu-content">
+                <li>
+                  <a href="#" class="fa fa-bookmark-o"></a>
+                </li>
+                <li><a href="#" class="fa fa-heart-o"><span>{{m.note}}/20</span></a></li>
+              </ul>
+            </div>
+            <div class="data">
+              <div class="content">
+                <span class="author">{{m.realisateur}}</span>
+                <h1 class="title"><a href="#">{{m.titre}}</a></h1>
+                <p class="text">{{m.description}}</p>
+                <a href="#" class="button">Read more</a>
+              </div>
             </div>
           </div>
-          <div class="p-2 bd-highlight">Flex item 2</div>
-          <div class="p-2 bd-highlight">Flex item 3</div>
         </div>
-      </div>  
-  </div>
-</div>
-
-
-
-
-<div class="container">
-    <div class="d-flex bd-highlight">
-      <div >
-        <h1>{{movie.titre}}</h1>
-  
-      
-            <youtube-player 
-            #player
-            [videoId]="videoId"
-            (ready)="onReady()"
-            (stateChange)="onStateChange($event)"
-          ></youtube-player>
-     
-        <p>{{movie.description}}</p>
-      </div>
-        
-  
-</div>
-</div>
-
-<div *ngFor="let m of movies" class="row">
-  <div class="example-2 card">
-    <div class="wrapper">
-      <div class="header">
-        <div class="date">
-          <span class="day">12</span>
-          <span class="month">Aug</span>
-          <span class="year">2016</span>
+        <div class="example-2 card">
+          <div class="wrapper">
+            <div class="header">
+              <div class="date">
+                <span class="day">12</span>
+                <span class="month">Aug</span>
+                <span class="year">2016</span>
+              </div>
+              <ul class="menu-content">
+                <li>
+                  <a href="#" class="fa fa-bookmark-o"></a>
+                </li>
+                <li><a href="#" class="fa fa-heart-o"><span>18</span></a></li>
+                <li><a href="#" class="fa fa-comment-o"><span>3</span></a></li>
+              </ul>
+            </div>
+            <div class="data">
+              <div class="content">
+                <span class="author">Jane Doe</span>
+                <h1 class="title"><a href="#">Stranger Things: The sound of the Upside Down</a></h1>
+                <p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
+                <a href="#" class="button">Read more</a>
+              </div>
+            </div>
+          </div>
         </div>
-        <ul class="menu-content">
-          <li>
-            <a href="#" class="fa fa-bookmark-o"></a>
-          </li>
-          <li><a href="#" class="fa fa-heart-o"><span>18</span></a></li>
-          <li><a href="#" class="fa fa-comment-o"><span>3</span></a></li>
-        </ul>
-      </div>
-      <div class="data">
-        <div class="content">
-          <span class="author">Jane Doe</span>
-          <h1 class="title"><a href="#">Stranger Things: The sound of the Upside Down</a></h1>
-          <p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
-          <a href="#" class="button">Read more</a>
-        </div>
-      </div>
     </div>
-  </div>
+    
 </div>
 
 
 
 
-  <app-movie-comments [movie]="movie" [moyenne]="moyenne" [notes]="notes" (refresh)="refresh()" ></app-movie-comments>
-
-
-  
+<app-movie-comments [movie]="movie"  (refresh)="refresh()" ></app-movie-comments>

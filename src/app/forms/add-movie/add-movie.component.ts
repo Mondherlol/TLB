@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MoviesService } from 'src/app/services/movieService/movies.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-movie',
@@ -10,11 +11,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AddMovieComponent implements OnInit {
   movieFormGroup : FormGroup = new FormGroup({});
+  numbers = Array(21).fill(1).map((x,i)=>i);
   movie:any;
   constructor(
     private _formBuilder: FormBuilder,
     private movieService: MoviesService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -27,37 +30,24 @@ export class AddMovieComponent implements OnInit {
       themes:this._formBuilder.array([]),
       realisateur:[''],
       trailerURL:['https://youtu.be/dFlDRhvM4L0'],
-      userId:['fldslkl']
-
+      userId:['fldslkl'],
+      avisCourt:[],
+      avisLong:[]
 
     });
   }
   afficher(){
     this.movie=this.movieFormGroup.value;
-    const lesThemes=this.movieFormGroup.controls['themes'].value;
-    console.log(lesThemes);
-    this.movie.themes="[";
-    console.log(this.movie);
-    for (let i = 0; i < lesThemes.length; i++) {
-      this.movie.themes=this.movie.themes+'"'+lesThemes[i]+'"';
-      if(i!=lesThemes.length-1){
-        this.movie.themes=this.movie.themes+",";
-      }
-    }
-    this.movie.themes=this.movie.themes+"]";
-
     console.log(this.movie);
       this.movieService.addMovie(this.movie).subscribe(
       (data) =>{
         this.openSuccessSnackBar();
-        console.log("Ajouté avec succès !");
+        this.router.navigateByUrl('/catalogueMovies');
       },
       (error)=>{
         this.openErrorSnackBar(error.statusText);
-        console.log("Erreur d'ajout.")
       }
     );
- 
   }
 
   public get themes(){

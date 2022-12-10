@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MoviesService } from 'src/app/services/movieService/movies.service';
 import { UserService } from 'src/app/services/movieService/user.service';
 
 @Component({
@@ -9,9 +10,10 @@ import { UserService } from 'src/app/services/movieService/user.service';
 })
 export class NavbarComponent implements OnInit {
   connecte:Boolean=false;
+  movies:any[] =[];
 
   currentUser:any;
-  constructor(private router:Router, private userService:UserService
+  constructor(private router:Router, private userService:UserService, private movieService:MoviesService
   ) { }
   
   ngOnInit(): void {
@@ -25,6 +27,15 @@ export class NavbarComponent implements OnInit {
           console.log(this.currentUser);
         }
       }
+    });
+    this.movieService.getAllMovies().subscribe((data)=>{
+      this.movies = data;
+     for (let i = 0; i < this.movies.length; i++) {
+      console.log(this.movies[i].themes);
+        this.movies[i].themes=JSON.parse(data[i].themes);
+        console.log(this.movies[i].themes);
+     }
+  
     });
   }
  

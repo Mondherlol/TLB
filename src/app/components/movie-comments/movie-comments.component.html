@@ -3,71 +3,7 @@
 	<div class="row justify-content-center">
 	
 		<div class="col-xl-7 col-lg-8 col-md-15 col-12 text-center mb-5">
-			<div class="card">
-				<div class="row justify-content-left d-flex">
-					<div class="col-md-4 d-flex flex-column">
-						<div class="rating-box">
-							<h1 class="pt-4">{{moyenne | number : '1.2-2' }}</h1>
-							<p class="">/ 20 </p>
-						</div>
-						<div>
-							<h2 style="font-size: 2em" ><i  class="ml-3 star"  [attr.data-star]="moyenne/4"  > </i></h2>
-
-						</div>
-					</div>
-					<div class="col-md-8">
-						<div class="rating-bar0 justify-content-center">
-							<table class="text-left mx-auto">
-								<tr>
-									<td class="rating-label">Excellent</td>
-									<td class="rating-bar">
-										<div class="bar-container">
-									      <div class="bar-5" [ngStyle]="{'width.%': (this.excellent / this.notes.length ) * 100}"></div>
-									    </div>
-									</td>
-									<td class="text-right">{{excellent}}</td>
-								</tr>
-								<tr>
-									<td class="rating-label">Tres bon</td>
-									<td class="rating-bar">
-										<div class="bar-container">
-									      <div class="bar-4" [ngStyle]="{'width.%': (this.tresbon / this.notes.length ) * 100}"></div>
-									    </div>
-									</td>
-									<td class="text-right">{{tresbon}}</td>
-								</tr>
-								<tr>
-									<td class="rating-label">Bien</td>
-									<td class="rating-bar">
-										<div class="bar-container">
-									      <div class="bar-3"  [ngStyle]="{'width.%': (this.bon / this.notes.length ) * 100}"></div>
-									    </div>
-									</td>
-									<td class="text-right">{{bon}}</td>
-								</tr>
-								<tr>
-									<td class="rating-label">Moyen</td>
-									<td class="rating-bar">
-										<div class="bar-container">
-									      <div class="bar-2"  [ngStyle]="{'width.%': (this.moyen / this.notes.length ) * 100}"></div>
-									    </div>
-									</td>
-									<td class="text-right">{{moyen}}</td>
-								</tr>
-								<tr>
-									<td class="rating-label">Nul</td>
-									<td class="rating-bar" >
-										<div class="bar-container">
-									      <div class="bar-1"   [ngStyle]="{'width.%': (this.nul / this.notes.length ) * 100}"></div>
-									    </div>
-									</td>
-									<td class="text-right">{{nul}}</td>
-								</tr>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
+		
 			<div *ngFor="let c of movie.commentaires ; let i = index">
             <div class="card"   *ngIf=" c.idUser != currentUser?._id">
 				

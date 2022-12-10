@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MoviesService {
-  // private baseUrl = "http://localhost:3000/api/movie"
-  private baseUrl = "https://backendtlb.onrender.com/api/movie"
+  private baseUrl = "http://localhost:3000/api/movie"
+  // private baseUrl = "https://backendtlb.onrender.com/api/movie"
   constructor(private http: HttpClient) { }
   getAllMovies():Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl);
@@ -17,10 +17,10 @@ export class MoviesService {
     return this.http.post(`${this.baseUrl}`,movie,this.getToken());
   };
   deleteMovie(id: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`);
+    return this.http.delete(`${this.baseUrl}/${id}`,this.getToken());
   }
   updateMovie(id: string, movie: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}/${id}`, movie);
+    return this.http.put(`${this.baseUrl}/${id}`, movie,this.getToken());
   }
   getMovieById(id:any):Observable<any> {
     return this.http.get(`${this.baseUrl}/${id}`);
@@ -28,6 +28,13 @@ export class MoviesService {
   getMoviesByTheme(themes:any):Observable<any[]> {
     return this.http.post<any[]>(`${this.baseUrl}/theme`,themes);
   };
+  getMoviesByTitle(titre:any):Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/titre/${titre}`);
+  };
+  getMoviesByOneTheme(theme:any):Observable<any[]>{
+    return this.http.get<any[]>(`${this.baseUrl}/theme/${theme}`);
+  }
+
 
   getToken(){
     var token = localStorage.getItem('TOKEN');

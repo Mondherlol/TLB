@@ -23,6 +23,9 @@ import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 import { UsersComponent } from './admin/users/users.component';
 import { MovieCommentsComponent } from './components/movie-comments/movie-comments.component';
+import { ResultatComponent } from './main/resultat/resultat.component';
+import { ModifierFilmComponent } from './components/modifier-film/modifier-film.component';
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 
 
 
@@ -40,7 +43,9 @@ import { MovieCommentsComponent } from './components/movie-comments/movie-commen
     SignupComponent,
     UsersComponent,
     MovieCommentsComponent,
-    
+    ResultatComponent,
+    ModifierFilmComponent,
+
 
   ],
   imports: [
@@ -55,7 +60,9 @@ import { MovieCommentsComponent } from './components/movie-comments/movie-commen
     MdbFormsModule,
     MdbCollapseModule,
     MdbDropdownModule,
-    MdbCheckboxModule
+    MdbCheckboxModule,
+    MdbModalModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

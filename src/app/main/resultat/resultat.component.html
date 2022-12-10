@@ -1,0 +1,65 @@
+
+<div class="container-fluid " class="styleCard"  >
+        <div *ngIf="movies.length == 0">
+            <h1 style="font-size: 50px; color:rgb(65, 64, 64); font-weight: bold; text-transform: capitalize; margin-top: 50px;">aucun résultat...</h1>
+        </div>
+       <div class="row  "  >
+       
+          <div *ngFor="let m of movies"   class="col">
+       
+            
+           <div class="card" id="{{m._id}}"   (mouseover)="afficher(m._id)" (mouseout)="cacher(m._id)"
+            style="background-image: url({{m.posterURL}});
+           background-repeat: no-repeat;
+           background-size: cover;"> 
+             <div class="card-spacing"></div>
+             <div class="card-content">
+             <h2>{{m.titre}} {{m.AnneeSortie}}</h2>
+             <p class="rating"> <i style="font-size:25px" class="ml-3 star"  [attr.data-star]="m.note/4"  > </i> {{m.note | number : '1.2-2'}} / 20 </p>
+             <div class="tags" >
+               <div *ngFor="let t of m.themes" class="tagbox">
+                   <div class="tagbox {{t}}">{{t}}</div>
+               </div>
+       
+             </div>
+           
+         
+             <div class="card-footer " style="text-align:center;">
+               <div class="row">
+                 <a class="btn btn-primary btn-rounded "  routerLink="/movie/{{m._id}}"> VOIR PLUS</a> 
+                 <button class="btn btn-danger btn-rounded" style="margin-top: 8px;" > SUPPRIMER</button>
+               </div>
+       
+       
+               </div>
+       
+             </div>
+       
+           
+           </div>
+           
+          </div>
+       </div>
+           </div>
+       
+       
+           <div class="row landing-hosting">
+               <div class="col-md-6">
+                   <div class="vod-part">
+                       <div class="vod-line one"></div>
+                       <div class="vod-line two"></div>
+                       <div class="vod-line three"></div>
+                   </div>
+               </div>
+               <div class="col-md-6">
+                   <br><br><h3>Vous ne trouvez pas un film en particulier ?<span style="color: #d81f26;"> Ajoutez-le !</span></h3>
+             
+                   <p>
+                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae enim sed metus porttitor venenatis eu a sem. Integer a sem scelerisque, faucibus purus quis, vestibulum sem.            </p>
+                   <p>
+                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.            </p>
+                   <a class="ordr-nw-bttn" routerLink="/addMovie">Ajouter un Film</a>
+               </div>
+           </div>
+       
+    

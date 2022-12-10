@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { of, Subscription } from 'rxjs';
 import { MoviesService } from 'src/app/services/movieService/movies.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -45,7 +45,6 @@ export class MovieComponent implements OnInit {
       this.movieService.getMovieById(this.idMovie).subscribe((data) => {
         this.movie = data;
         this.movie.commentaires.forEach((c: any) => {
-          console.log(c);
             this.notes.push(c.note);
            
     
@@ -54,8 +53,18 @@ export class MovieComponent implements OnInit {
          //Récuperer films liés 
          this.movieService.getMoviesByTheme(this.movie).subscribe((filmsTries)=>{
            this.moviesLike = filmsTries;
-        
+           let i=0;
+           this.moviesLike.forEach(m => {
+            if(m._id == this.movie._id || i > 2 ){
+              let index = this.moviesLike.indexOf(m);
+              this.moviesLike.splice(index,1);
+            }else {
+              i++;
+            }
+  
+          });
     
+     
              
         });
    

@@ -1,0 +1,131 @@
+
+
+<main>
+    <div class="container-fluid px-1 py-5 mx-auto">
+      <div class="row d-flex justify-content-center">
+        <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+          <div class="card">
+            <h5 class="text-center mb-4">AJOUTEZ VOTRE FILM</h5>
+            <form     [formGroup]="movieFormGroup" (ngSubmit)="afficher()" class="form-card" >
+              <div class="row justify-content-between text-left">
+                <div class="form-group col-sm-6 flex-column d-flex">
+                  <label class="form-control-label px-3"
+                    >Titre<span class="text-danger"> *</span></label >
+                  <input
+                    type="text"
+                    id="titre"
+                    name="titre"
+                    placeholder="Titre du film"
+                    required
+                    formControlName="titre"
+                  />
+                  <div *ngIf="isInvalidTitre()" class="alert alert-danger">
+                      L'identifiant est obligatoire
+                      </div>
+                </div>
+                <div class="form-group col-sm-6 flex-column d-flex">
+                  <label class="form-control-label px-3"
+                    >Année de sortie<span class="text-danger"> *</span></label >
+                    <input type="number" id="anneeSortie" name="anneeSortie" formControlName="anneeSortie" min="1900" max="2099" step="1" value="2022" />
+                
+                </div>
+              </div>
+              <div class="row justify-content-between text-left">
+                <div class="form-group col-sm-6 flex-column d-flex">
+                  <label class="form-control-label px-3"
+                    >Réalisateur<span class="text-danger"> *</span></label
+                  >
+                  <input
+                    type="text"
+                    formControlName="realisateur"
+                    placeholder="Réalisateur du film"
+                  />   
+                   <div *ngIf="isInvalidRealisateur()" class="alert alert-danger">
+                      Le réalisateur est obligatoire
+                      </div>
+                </div>
+        
+              </div>
+              <div class="row justify-content-between text-left">
+                <div class="form-group col-sm-12 flex-column d-flex">
+                  <label class="form-control-label px-3" >Thèmes <span class="text-danger"> *</span></label>
+                    <div formArrayName="themes">
+                      <div *ngFor="let t of themes.controls; let i=index;">
+                          Theme {{i+1}} 
+                          <select class="form-control" [formControlName]="i"  >
+                            <option value="Aventure">Aventure</option>
+                            <option value="Action">Action</option>
+                            <option value="Comédie">Comédie</option>
+                            <option value="Psychologique">Psychologique</option>
+                            <option value="Horreur">Horreur</option>
+                            <option value="Animation">Animation</option>
+                            <option value="Drame">Drame</option>
+                            <option value="Romantique">Romantique</option>
+                            <option value="Fantastique">Fantastique</option>
+                            <option value="Mystère">Mystère</option>
+  
+                          </select>
+                       
+                      </div>
+                    </div>
+                    <button type="button" (click)="onAjouterTheme()">Ajouter Theme</button>
+  
+            
+                </div>
+              </div>
+              <div class="row justify-content-between text-left">
+                <div class="form-group col-sm-12 flex-column d-flex">
+                  <label class="form-control-label px-3"
+                    >Image du film <span class="text-danger"> *</span></label
+                  >
+                  <input
+                    type="text"
+                    formControlName="posterURL"
+                    placeholder="https://www.exemple.com/image.jpg"
+                  />
+                  <div *ngIf="isInvalidImage()" class="alert alert-danger">
+                      L'image du film est obligatoire.
+                      </div>
+                </div>
+              </div>
+              <div class="row justify-content-between text-left">
+                <div class="form-group col-sm-12 flex-column d-flex">
+                  <label class="form-control-label px-3"
+                    >Trailer Youtube</label
+                  >
+                  <input
+                    type="text"
+                    formControlName="trailerURL"
+                    placeholder="https://www.youtube.com/videoexemple"
+                  />
+               
+                </div>
+              </div>
+              <div class="row justify-content-between text-left">
+                <div class="form-group col-12 flex-column d-flex">
+                  <label class="form-control-label px-3"
+                    >Résumé du film<span class="text-danger">
+                      *</span
+                    ></label
+                  >
+                <textarea maxlength="600" id="description" name="description" formControlName="description"  placeholder="Petit résumé du film..." ></textarea>
+                <div *ngIf="isInvalidDescription()" class="alert alert-danger">
+                  Le résumé du film est obligatoire.
+                  </div>
+                </div>
+              </div>
+
+              <div class="row justify-content-end">
+                <div class="form-group col-sm-6">
+                  <button type="submit" id="Terminer"  class="btn-block btn-primary" [disabled]="movieFormGroup.invalid">
+                    terminer
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  

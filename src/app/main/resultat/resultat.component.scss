@@ -61,6 +61,7 @@ body{
   .card {
     cursor: pointer;
     margin: 5px;
+    margin-left: 50px;
     background-color: black;
     -webkit-box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.48); 
     box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.48);
@@ -272,14 +273,3 @@ body{
   [data-star^="4.8"]::after{width:96%}
   [data-star^="4.9"]::after{width:98%}
   [data-star^="5"]::after{width:100%}
-
-
-  .filtres {
-    display: flex;
-    position: relative;
-    top: 0px;
-    width: 600px;
-    height: auto;
-    margin-bottom: auto;
-    margin-top: 20px;
-  }

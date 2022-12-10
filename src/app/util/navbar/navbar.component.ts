@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MoviesService } from 'src/app/services/movieService/movies.service';
 import { UserService } from 'src/app/services/movieService/user.service';
@@ -11,12 +12,15 @@ import { UserService } from 'src/app/services/movieService/user.service';
 export class NavbarComponent implements OnInit {
   connecte:Boolean=false;
   movies:any[] =[];
+  searchFormGroup : FormGroup = new FormGroup({});
 
   currentUser:any;
-  constructor(private router:Router, private userService:UserService, private movieService:MoviesService
+  constructor(private router:Router, private userService:UserService, private movieService:MoviesService, private _formBuilder:FormBuilder
   ) { }
   
   ngOnInit(): void {
+
+
     this.router.events.subscribe( event => {
       if(event.constructor.name === "NavigationEnd") {
         this.connecte= this.userService.isConnected();
@@ -37,9 +41,17 @@ export class NavbarComponent implements OnInit {
      }
   
     });
+    this.searchFormGroup = this._formBuilder.group({
+      titre:[,[Validators.required]],
+    } 
+    )
   }
  
-
+  search(){
+    let titre = this.searchFormGroup.controls['titre'].value;
+    this.router.navigateByUrl('/resultat/'+titre);
+  
+  }
   
   logout(){
     localStorage.clear();

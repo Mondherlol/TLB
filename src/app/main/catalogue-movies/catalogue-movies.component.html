@@ -2,12 +2,12 @@
 <div class="container-fluid " class="styleCard"  >
 
 
- <div class="col-md-2" style="border: 2px grey solid;">
+ <div  class="row  filtres"  >
       
-     <form>
+     <form  >
       <div>
 
- 
+        <h2 style="font-size: large; color:rgb(56, 56, 56)">Filtrer par...</h2>
         <label class="form-label">Note minimale</label>
         <select class="form-control">
           <option value="0">Aucune</option>
@@ -19,24 +19,26 @@
 
         </select>
       </div>
-      <form>
+    </form>
+      <form [formGroup]="filtreFormGroup" (ngSubmit)="filtrerParTheme()">
 
 
         <label class="form-label">Theme</label>
-        <select class="form-control">
+        <select formControlName="theme" class="form-control">
           <option value="Aventure">Aventure</option>
           <option value="Action">Action</option>
           <option value="Comédie">Comédie</option>
           <option value="Psychologique">Psychologique</option>
           <option value="Horreur">Horreur</option>
         </select>
+        <input type="submit" class="btn btn-primary" value="VALIDER">
       </form>
 
-     </form>
+  
 </div>
     <div class="row  "  >
     
-       <div *ngFor="let m of movies"   class="col" style="border: 5px red solid;">
+       <div *ngFor="let m of movies"   class="col" >
     
          
         <div class="card" id="{{m._id}}" (mouseover)="afficher(m._id)" (mouseout)="cacher(m._id)"
@@ -57,8 +59,9 @@
       
           <div class="card-footer " style="text-align:center;">
             <div class="row">
-              <a class="btn btn-outline-primary" routerLink="/movie/{{m._id}}"> VOIR PLUS</a>
-              <button class="btn btn-outline-danger" (click)="deleteMovie(m._id)"> SUPPRIMER</button>
+              <a class="btn btn-primary btn-rounded "  routerLink="/movie/{{m._id}}"> VOIR PLUS</a> 
+              <button (click)="modifierMovie(m._id)" class="btn btn-secondary btn-rounded" style="margin-top: 8px;" > MODIFIER</button>
+              <button (click)="deleteMovie(m._id)" class="btn btn-danger btn-rounded" style="margin-top: 8px;" > SUPPRIMER</button>
             </div>
     
     

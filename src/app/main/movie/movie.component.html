@@ -27,11 +27,14 @@
               (ready)="onReady()"
               (stateChange)="onStateChange($event)"
             ></youtube-player>
-            <p style="text-align: right;">{{movie.description}}</p>
+            <h3 class="ipc-title__text">Synopsis<span class="ipc-title__subtext"></span><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" class="ipc-icon ipc-icon--chevron-right-inline ipc-icon--inline ipc-title-link ipc-title-link-chevron ipc-title--nomargin" id="iconContext-chevron-right-inline" viewBox="0 0 24 24" fill="currentColor" role="presentation"><path d="M5.622.631A2.153 2.153 0 0 0 5 2.147c0 .568.224 1.113.622 1.515l8.249 8.34-8.25 8.34a2.16 2.16 0 0 0-.548 2.07c.196.74.768 1.317 1.499 1.515a2.104 2.104 0 0 0 2.048-.555l9.758-9.866a2.153 2.153 0 0 0 0-3.03L8.62.61C7.812-.207 6.45-.207 5.622.63z"></path></svg></h3>
+
+            <p style="text-align: left;">{{movie.description}}</p>
             <ul class="infos">
               <li class="ligne">Réalisation <a  class="lien">{{movie.realisateur}}</a> </li>
               <li class="ligne">Année de sortie <a class="lien">{{movie.anneeSortie}}</a></li>
             </ul>
+            <h3 class="ipc-title__text">Avis des utilisateurs<span class="ipc-title__subtext"></span><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" class="ipc-icon ipc-icon--chevron-right-inline ipc-icon--inline ipc-title-link ipc-title-link-chevron ipc-title--nomargin" id="iconContext-chevron-right-inline" viewBox="0 0 24 24" fill="currentColor" role="presentation"><path d="M5.622.631A2.153 2.153 0 0 0 5 2.147c0 .568.224 1.113.622 1.515l8.249 8.34-8.25 8.34a2.16 2.16 0 0 0-.548 2.07c.196.74.768 1.317 1.499 1.515a2.104 2.104 0 0 0 2.048-.555l9.758-9.866a2.153 2.153 0 0 0 0-3.03L8.62.61C7.812-.207 6.45-.207 5.622.63z"></path></svg></h3>
        
             </div>
 
@@ -113,6 +116,8 @@
     
   </div> </div>
     <div class="grid-item-2">
+      <h3 class="ipc-title__text">Films liés...<span class="ipc-title__subtext"></span></h3>
+
         <div *ngFor="let m of moviesLike" class="example-2 card" >
           <div class="wrapper" style="   background: url({{m.posterURL}}) center / cover no-repeat; cursor:pointer" routerLink="/movie/{{m._id}}">
             <div class="header">
@@ -122,47 +127,22 @@
               </div>
               <ul class="menu-content">
                 <li>
-                  <a href="#" class="fa fa-bookmark-o"></a>
+                  <a  class="fa fa-bookmark-o"></a>
                 </li>
-                <li><a href="#" class="fa fa-heart-o"><span>{{m.note}}/20</span></a></li>
+                <li><a class="fa fa-heart-o"><span>{{m.note}}/20</span></a></li>
               </ul>
             </div>
             <div class="data">
               <div class="content">
                 <span class="author">{{m.realisateur}}</span>
-                <h1 class="title"><a href="#">{{m.titre}}</a></h1>
-                <p class="text">{{m.description}}</p>
-                <a href="#" class="button">Read more</a>
+                <h1 class="title"><a >{{m.titre}}</a></h1>
+                <p class="text">{{m.anneeSortie}}</p>
+                <a  class="button">Découvrir</a>
               </div>
             </div>
           </div>
         </div>
-        <div class="example-2 card">
-          <div class="wrapper">
-            <div class="header">
-              <div class="date">
-                <span class="day">12</span>
-                <span class="month">Aug</span>
-                <span class="year">2016</span>
-              </div>
-              <ul class="menu-content">
-                <li>
-                  <a href="#" class="fa fa-bookmark-o"></a>
-                </li>
-                <li><a href="#" class="fa fa-heart-o"><span>18</span></a></li>
-                <li><a href="#" class="fa fa-comment-o"><span>3</span></a></li>
-              </ul>
-            </div>
-            <div class="data">
-              <div class="content">
-                <span class="author">Jane Doe</span>
-                <h1 class="title"><a href="#">Stranger Things: The sound of the Upside Down</a></h1>
-                <p class="text">The antsy bingers of Netflix will eagerly anticipate the digital release of the Survive soundtrack, out today.</p>
-                <a href="#" class="button">Read more</a>
-              </div>
-            </div>
-          </div>
-        </div>
+      
     </div>
     
 </div>

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
   // private baseUrl = "http://localhost:3000/api/user/";
-  private baseUrl = "https://backendtlb.onrender.com/api/user"
+  private baseUrl = "https://backendtlb.onrender.com/api/user/"
 
   
   constructor(

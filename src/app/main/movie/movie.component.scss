@@ -469,7 +469,7 @@ td {
   max-width: 1300px;
   width: 90%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 70% 30%);
+  grid-template-columns: repeat(auto-fill, 10% 60% 30%);
   // background-color: #000;
   justify-content: center;
 }
@@ -483,6 +483,10 @@ td {
   margin-left: auto;
   margin-right: auto;
 
+}
+.grid-item0{
+  width: 5px;
+  display: block;
 }
 .grid-item-2{
   // background-color: white;
@@ -535,5 +539,83 @@ td {
     min-height: 300px!important;
   }
 
+  
+}
+
+
+.titre{
+  margin-right: 5%;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: Roboto;
+  text-align: right;
+ 
+}
+.affiche {
+  margin-top: 90%;
+  width: 120%!important;
+}
+
+.tagbox {
+  display: inline-block;
+  color: white;
+  padding: 2px 5px;
+  border-radius: 5px;
+  font-size: 0.75rem;
+
+}
+
+.themes {
+  position: relative;
+  top: 8px;
+  text-align: left;
+}
+.Fantasy {
+  background-color: purple;
+}
+
+.Sci {
+  background-color: pink;
+}
+.Animation {
+  background-color: rgb(0, 160, 160);
+}
+.Romantique {
+  background-color: pink;
+
+}
+.Aventure{
+  background-color: rgb(255, 48, 48);
+}
+.Psychologique{
+  background-color: white;
+  color: black;
+}
+.Horreur{
+  background-color: black;
+  border: 1px white solid;
+}
+.infos {
+  display: flex;
+  flex-direction: column;
+  padding: none;
+}
+.ligne{
+  
+  list-style: none;
+  border-color:rgba(0,0,0,.12);
+  border-top-width: 1px;
+  border-top-style: solid;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 0;
+  min-height: 3rem;
+  flex-wrap: wrap;
+  padding-bottom: .75rem;
+}
+
+.lien {
   
 }

@@ -63,6 +63,12 @@
                           <option value="Comédie">Comédie</option>
                           <option value="Psychologique">Psychologique</option>
                           <option value="Horreur">Horreur</option>
+                          <option value="Animation">Animation</option>
+                          <option value="Drame">Drame</option>
+                          <option value="Romantique">Romantique</option>
+                          <option value="Fantastique">Fantastique</option>
+                          <option value="Mystère">Mystère</option>
+
                         </select>
                      
                     </div>
@@ -107,7 +113,7 @@
                     *</span
                   ></label
                 >
-              <textarea maxlength="130" id="description" name="description" formControlName="description"  placeholder="Petit résumé du film..." ></textarea>
+              <textarea maxlength="600" id="description" name="description" formControlName="description"  placeholder="Petit résumé du film..." ></textarea>
               <div *ngIf="isInvalidDescription()" class="alert alert-danger">
                 Le résumé du film est obligatoire.
                 </div>
@@ -115,7 +121,7 @@
             </div>
             <div class="row justify-content-between text-left">
               <div class="form-group col-12 flex-column d-flex">
-                 <label class="form-control-label px-3"   >Votre avis complet sur le film<span class="text-danger">*</span></label>
+                 <label class="form-control-label px-3"   >Un avis court sur le film<span class="text-danger">*</span></label>
                   <input type="text" maxlength="75"  formControlName="avisCourt"  placeholder="C'était magistral !..." />
           
               </div>

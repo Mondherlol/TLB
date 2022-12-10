@@ -1,18 +1,45 @@
 <div class="grid-conteneur">
+  <div class="gridi-item0"> 
+    <div class="d-flex ">
+      <div>
+        <img class=" affiche" src="{{movie.posterURL}}"><br>
+        <div class="themes">
+          <div *ngFor="let t of movie.themes" class="tagbox">
+            <div class="tagbox {{t}}">{{t}}</div> 
+            </div>
+          </div>
+          
+      </div>
+    
+   </div>
+  </div>
     <div class="grid-item"> 
       <div class="d-flex bd-highlight">
         <div >
-          <h1>{{movie.titre}}</h1>
-    
-        
+          <h1 class="titre">{{movie.titre}}</h1>
+          <div class="row">
+         
+            <div class="col">
+             
               <youtube-player 
               #player
               [videoId]="videoId"
               (ready)="onReady()"
               (stateChange)="onStateChange($event)"
             ></youtube-player>
+            <p style="text-align: right;">{{movie.description}}</p>
+            <ul class="infos">
+              <li class="ligne">Réalisation <a  class="lien">{{movie.realisateur}}</a> </li>
+              <li class="ligne">Année de sortie <a class="lien">{{movie.anneeSortie}}</a></li>
+            </ul>
        
-          <p>{{movie.description}}</p>
+            </div>
+
+          </div>
+         
+        
+         
+     
 
           
           <div >

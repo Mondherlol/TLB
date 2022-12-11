@@ -17,6 +17,8 @@ export class UserService {
   currentUser : Observable<any> = new Observable<any>;
   userToken: any;
 
+
+
   userExist(user:any):Observable<any>{
     return  this.http.post(`${this.baseUrl}exist`,user);
    }
@@ -37,6 +39,9 @@ export class UserService {
   };
   deleteUser(id: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+  getUser(idUser:any):Observable<any>{
+    return this.http.get(`${this.baseUrl}/${idUser}`);
   }
  
 }

@@ -31,10 +31,14 @@ export class MoviesService {
   getMoviesByTitle(titre:any):Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/titre/${titre}`);
   };
+  getMoviesByMaxStars(stars:any):Observable<any[]>{
+    return this.http.get<any[]>(`${this.baseUrl}/stars/${stars}`);
+  };
   getMoviesByOneTheme(theme:any):Observable<any[]>{
     return this.http.get<any[]>(`${this.baseUrl}/theme/${theme}`);
-  }
+  };
 
+  
 
   getToken(){
     var token = localStorage.getItem('TOKEN');

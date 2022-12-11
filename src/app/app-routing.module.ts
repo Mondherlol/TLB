@@ -8,6 +8,7 @@ import { AccueilComponent } from './main/accueil/accueil.component';
 import { CatalogueMoviesComponent } from './main/catalogue-movies/catalogue-movies.component';
 import { GamesComponent } from './main/games/games.component';
 import { MovieComponent } from './main/movie/movie.component';
+import { ProfilComponent } from './main/profil/profil.component';
 import { ResultatComponent } from './main/resultat/resultat.component';
 import { ErrorPageComponent } from './util/error-page/error-page.component';
 
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path:'signup',component:SignupComponent},
   {path:'users',component:UsersComponent},
   {path:'resultat/:titre',component:ResultatComponent},
+  {path:'profil/:idUser',component:ProfilComponent},
   {path:'',redirectTo:'accueil',pathMatch:'full'},
   {path:'**',component:ErrorPageComponent}
 

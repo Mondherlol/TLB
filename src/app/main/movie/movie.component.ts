@@ -41,28 +41,33 @@ export class MovieComponent implements OnInit {
 
     //récuperer film 
     this.routeSub = this.route.params.subscribe((params) => {
+ 
       this.idMovie = params['idMovie'];
       this.movieService.getMovieById(this.idMovie).subscribe((data) => {
         this.movie = data;
+        this.notes=[];
         this.movie.commentaires.forEach((c: any) => {
             this.notes.push(c.note);
-           
-    
         });
-            
+        this.moviesLike=[];
+
          //Récuperer films liés 
          this.movieService.getMoviesByTheme(this.movie).subscribe((filmsTries)=>{
+   
            this.moviesLike = filmsTries;
-           let i=0;
-           this.moviesLike.forEach(m => {
-            if(m._id == this.movie._id || i > 2 ){
-              let index = this.moviesLike.indexOf(m);
-              this.moviesLike.splice(index,1);
-            }else {
-              i++;
+           console.log("Movies Like : ");
+           console.log(this.moviesLike);
+           console.log(this.movie);
+           const pos = this.moviesLike.map(m => m._id).indexOf(this.movie._id); //Récuperer position du film actuel
+           this.moviesLike.splice(pos,1); //Et le retirer
+           for (var i = this.moviesLike.length - 1; i > 0; i--) { //Melanger les elements du tableau
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = this.moviesLike[i];
+            this.moviesLike[i] = this.moviesLike[j];
+            this.moviesLike[j] = temp;
             }
-  
-          });
+           this.moviesLike.length=3;
+
     
      
              

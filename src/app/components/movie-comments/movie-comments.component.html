@@ -8,11 +8,11 @@
             <div class="card"   *ngIf=" c.idUser != currentUser?._id">
 				
 				<div class="d-flex flex-row bd-highlight mb-3" >
-					<div >
-						<img class="profile-pic" src="{{c.pdpUser}}">
+					<div  >
+						<img  style="cursor: pointer"  routerLink="/profil/{{c.idUser}}"  class="profile-pic" src="{{c.pdpUser}}">
 					</div>
 					<div class="d-flex flex-column"  >
-						<h3 class="mt-2 mb-0" style="    font-size: 1.75rem;">{{c.pseudoUser}}</h3>
+						<h3 routerLink="/profil/{{c.idUser}}"  class="mt-2 mb-0" style="    cursor:pointer; font-size: 1.75rem;">{{c.pseudoUser}}</h3>
 						<div>
 							<h2 > <span  > {{c.note}}</span> <span class="text-muted ">/20 </span> <i  class="ml-3 star"  [attr.data-star]="c.note/4"  > </i></h2>
 

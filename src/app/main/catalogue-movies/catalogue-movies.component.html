@@ -2,34 +2,36 @@
 <div class="container-fluid " class="styleCard"  >
 
 
- <div  class="row  filtres"  >
-      
-     <form  >
-      <div>
+ <div  class="row  filtres"   >
+  
+      <form [formGroup]="filtreFormGroup" (ngSubmit)="filtrer()"  style="width: 200px; "  > 
 
-        <h2 style="font-size: large; color:rgb(56, 56, 56)">Filtrer par...</h2>
-        <label class="form-label">Note minimale</label>
-        <select class="form-control">
-          <option value="0">Aucune</option>
-          <option value="1">⭐</option>
-          <option value="2">⭐⭐</option>
-          <option value="3">⭐⭐⭐</option>
-          <option value="4">⭐⭐⭐⭐</option>
-          <option value="5">⭐⭐⭐⭐⭐</option>
+        <div>
 
-        </select>
-      </div>
-    </form>
-      <form [formGroup]="filtreFormGroup" (ngSubmit)="filtrerParTheme()">
-
-
+          <h2 style="font-size: large; color:rgb(56, 56, 56)">Filtrer par...</h2>
+          <label class="form-label">Note Maximale</label>
+          <select formControlName="noteMax" class="form-control" >
+            <option value="1">⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="5">⭐⭐⭐⭐⭐</option>
+  
+          </select>
+        </div>
         <label class="form-label">Theme</label>
         <select formControlName="theme" class="form-control">
+          <option value="Tous">Tous</option>
           <option value="Aventure">Aventure</option>
           <option value="Action">Action</option>
           <option value="Comédie">Comédie</option>
           <option value="Psychologique">Psychologique</option>
           <option value="Horreur">Horreur</option>
+          <option value="Animation">Animation</option>
+          <option value="Drame">Drame</option>
+          <option value="Romantique">Romantique</option>
+          <option value="Fantastique">Fantastique</option>
+          <option value="Mystère">Mystère</option>
         </select>
         <input type="submit" class="btn btn-primary" value="VALIDER">
       </form>

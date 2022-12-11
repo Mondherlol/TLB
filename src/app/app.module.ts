@@ -26,6 +26,7 @@ import { MovieCommentsComponent } from './components/movie-comments/movie-commen
 import { ResultatComponent } from './main/resultat/resultat.component';
 import { ModifierFilmComponent } from './components/modifier-film/modifier-film.component';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+import { ProfilComponent } from './main/profil/profil.component';
 
 
 
@@ -45,6 +46,7 @@ import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
     MovieCommentsComponent,
     ResultatComponent,
     ModifierFilmComponent,
+    ProfilComponent,
 
 
   ],

@@ -1,0 +1,129 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+   <div class="row">
+      <div class="col-md-12">
+         <div id="content" class="content content-full-width">
+            <!-- begin profile -->
+            <div class="profile">
+               <div class="profile-header">
+                  <!-- BEGIN profile-header-cover -->
+                  <div class="profile-header-cover"></div>
+                  <!-- END profile-header-cover -->
+                  <!-- BEGIN profile-header-content -->
+                  <div class="profile-header-content">
+                     <!-- BEGIN profile-header-img -->
+                     <div class="profile-header-img">
+                        <img src="{{user.pdp}}" alt="">
+                     </div>
+                     <!-- END profile-header-img -->
+                     <!-- BEGIN profile-header-info -->
+                     <div class="profile-header-info">
+                        <h4 class="m-t-10 m-b-5">{{user.pseudo}}</h4>
+                        <p class="m-b-10">{{user.email}}</p>
+                        <a  class="btn btn-sm btn-info mb-2"> Contacter </a>
+                     </div>
+                     <!-- END profile-header-info -->
+                  </div>
+                  <!-- END profile-header-content -->
+                  <!-- BEGIN profile-header-tab -->
+                  <!-- <ul class="profile-header-tab nav nav-tabs">
+                     <li class="nav-item"><a href="https://www.bootdey.com/snippets/view/bs4-profile-with-timeline-posts" target="__blank" class="nav-link_">POSTS</a></li>
+                     <li class="nav-item"><a href="https://www.bootdey.com/snippets/view/bs4-profile-about" target="__blank" class="nav-link_">ABOUT</a></li>
+                     <li class="nav-item"><a href="https://www.bootdey.com/snippets/view/profile-photos" target="__blank" class="nav-link_">PHOTOS</a></li>
+                     <li class="nav-item"><a href="https://www.bootdey.com/snippets/view/profile-videos" target="__blank" class="nav-link_">VIDEOS</a></li>
+                     <li class="nav-item"><a href="https://www.bootdey.com/snippets/view/bs4-profile-friend-list" target="__blank" class="nav-link_ active show">FRIENDS</a></li>
+                  </ul> -->
+                  <!-- END profile-header-tab -->
+               </div>
+            </div>
+            <!-- end profile -->
+            <!-- begin profile-content -->
+            <div class="profile-content">
+               <!-- begin tab-content -->
+               <div class="tab-content p-0">
+                  <!-- begin #profile-post tab -->
+                  <div class="tab-pane fade active show" id="profile-post">
+                     <!-- begin timeline -->
+                     <ul class="timeline">
+                        <li *ngFor="let c of userComments" >
+                           <!-- begin timeline-time -->
+                           <div class="timeline-time">
+                              <span class="date">{{c.datePublication|date : 'd MMMM'}}</span>
+                              <span class="time">{{c.datePublication | date : 'y'}}</span>
+                           </div>
+                           <!-- end timeline-time -->
+                           <!-- begin timeline-icon -->
+                           <div class="timeline-icon">
+                              <a href="javascript:;">&nbsp;</a>
+                           </div>
+                           <!-- end timeline-icon -->
+                           <!-- begin timeline-body -->
+                        
+                           <div class="timeline-body row">
+                              <div class="timeline-header" style="    border-bottom: 1px solid #e2e7eb;     ">
+                                    
+                                 <span routerLink="/movie/{{c.idFilm}}" class="username"><a href="javascript:;"> {{c.titreFilm}}</a> <small></small></span>
+                                 <span class="pull-right text-muted">                                      <span  > {{c.note}}</span> <span class="text-muted ">/20 </span> <i  class="ml-3 star"  [attr.data-star]="c.note/4"  > </i>
+                              </span>
+                              </div>
+                              <div class="col-3">
+                                 <img class="img-fluid" src="{{c.imageFilm}}"  >
+                              </div>
+
+                              <div class="col" >
+                                 <div class="timeline-header">
+                              
+                  
+                             
+                                    <span class="userimage"><img src="{{user.pdp}}" alt=""></span>
+                                    <span class="username"><a href="javascript:;"> {{user.pseudo}}</a> <small></small></span>
+                            
+                                 </div>
+                                 <div class="timeline-content">
+                                    <div class="row text-start">
+                                       <h4 class="blue-text " style="font-size: 1.5rem;">"{{c.avisCourt}}"</h4>
+                                       <p class="content">{{c.avisLong}}</p>
+                                    </div>
+                                 
+                                 </div>
+                                
+                              </div>
+                              <div class="timeline-likes">
+                                 <div class="stats-right">
+                                    <span  class="stats-text"> <a routerLink="/movie/{{c.idFilm}}">{{c.nbCommentaires}} autres commentaires</a>  </span> 
+                                 </div>
+                                 <div class="stats">
+                      
+                                    <span class="fa-stack fa-fw stats-icon">
+                                    <i class="fa fa-circle fa-stack-2x text-warning"></i>
+                                    <i class="fa fa-star fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                    <span class="stats-total">{{c.moyenneFilm}} / 20</span>
+                                 </div>
+                              </div>
+                              <div class="timeline-footer">
+                                 <a (click)="addLike(c.idFilm,c.idCommentaire)" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> {{c.like}}</a>
+                                 <a (click)="addDislike(c.idFilm,c.idCommentaire)" href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-down fa-fw fa-lg m-r-3"></i> {{c.dislike}}</a>
+
+                              </div>
+                        
+                            
+                        
+                         
+                           </div>
+                           <!-- end timeline-body -->
+                        </li>
+                        
+                     </ul>
+                     <!-- end timeline -->
+                  </div>
+                  <!-- end #profile-post tab -->
+               </div>
+               <!-- end tab-content -->
+            </div>
+            <!-- end profile-content -->
+         </div>
+      </div>
+   </div>
+</div>

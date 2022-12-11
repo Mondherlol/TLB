@@ -32,6 +32,8 @@
           <option value="Romantique">Romantique</option>
           <option value="Fantastique">Fantastique</option>
           <option value="Mystère">Mystère</option>
+          <option value="Science-Fiction">Science-Fiction</option>
+
         </select>
         <input type="submit" class="btn btn-primary" value="VALIDER">
       </form>
@@ -43,12 +45,13 @@
        <div *ngFor="let m of movies"   class="col" >
     
          
-        <div class="card" id="{{m._id}}" (mouseover)="afficher(m._id)" (mouseout)="cacher(m._id)"
+        <div class="card" id="{{m._id}}" (mouseover)="afficher(m._id)" (mouseout)="cacher(m._id)" 
          style="background-image: url({{m.posterURL}});
         background-repeat: no-repeat;
         background-size: cover;"> 
-          <div class="card-spacing"></div>
-          <div class="card-content">
+          <div class="card-spacing" ></div>
+          <div class="card-content" >
+            <div routerLink="/movie/{{m._id}}">
           <h2>{{m.titre}} {{m.AnneeSortie}}</h2>
           <p class="rating"> <i style="font-size:25px" class="ml-3 star"  [attr.data-star]="m.note/4"  > </i> {{m.note | number : '1.2-2'}} / 20 </p>
           <div class="tags" >
@@ -58,12 +61,12 @@
     
           </div>
         
-      
+      </div>
           <div class="card-footer " style="text-align:center;">
             <div class="row">
               <a class="btn btn-primary btn-rounded "  routerLink="/movie/{{m._id}}"> VOIR PLUS</a> 
               <button (click)="modifierMovie(m._id)" class="btn btn-secondary btn-rounded" style="margin-top: 8px;" > MODIFIER</button>
-              <button (click)="deleteMovie(m._id)" class="btn btn-danger btn-rounded" style="margin-top: 8px;" > SUPPRIMER</button>
+              <!-- <button (click)="deleteMovie(m._id)" class="btn btn-danger btn-rounded" style="margin-top: 8px;" > SUPPRIMER</button> -->
             </div>
     
     

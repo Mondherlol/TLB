@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of, Subscription } from 'rxjs';
 import { MoviesService } from 'src/app/services/movieService/movies.service';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer,SafeResourceUrl} from '@angular/platform-browser';
 
 
 @Component({
@@ -27,13 +27,13 @@ export class MovieComponent implements OnInit {
   movie:any ;
 
   notes : number [] = [];
-
+  urlStreaming:any;
   idMovie:any;
   urlTrailer:any;
   constructor(private movieService:MoviesService,     private route: ActivatedRoute , private _sanitizer: DomSanitizer  ) { }
 
   ngOnInit(): void {
-
+    
     this.notes =[];
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
@@ -45,6 +45,7 @@ export class MovieComponent implements OnInit {
       this.idMovie = params['idMovie'];
       this.movieService.getMovieById(this.idMovie).subscribe((data) => {
         this.movie = data;
+      this.urlStreaming=this._sanitizer.bypassSecurityTrustResourceUrl(data.streaming);
         this.notes=[];
         this.movie.commentaires.forEach((c: any) => {
             this.notes.push(c.note);

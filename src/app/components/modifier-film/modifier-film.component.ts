@@ -51,6 +51,7 @@ export class ModifierFilmComponent implements OnInit {
         realisateur:[''],
         trailerURL:[''],
         themes:this._formBuilder.array([]),
+        streaming:['']
 
       });
   }

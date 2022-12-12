@@ -10,7 +10,7 @@ import { MoviesService } from 'src/app/services/movieService/movies.service';
   styleUrls: ['./catalogue-movies.component.scss']
 })
 export class CatalogueMoviesComponent implements OnInit {
-
+  charger=false;
   movies:any[] =[];
   card:any;
   test:string[]=[];
@@ -29,6 +29,7 @@ export class CatalogueMoviesComponent implements OnInit {
   ngOnInit(): void {
     this.movieService.getAllMovies().subscribe((data)=>{
       this.movies = data;
+      this.charger=true;
     });
     this.filtreFormGroup = this._formBuilder.group({
       theme:['Tous',[Validators.required]],
@@ -61,7 +62,7 @@ export class CatalogueMoviesComponent implements OnInit {
     });
   }
   filtrer(){
-    
+    this.charger=false;
     let noteMax=this.filtreFormGroup.controls['noteMax'].value;
     let theme =  this.filtreFormGroup.controls['theme'].value;
     let triNotes:any[] =[];
@@ -73,12 +74,15 @@ export class CatalogueMoviesComponent implements OnInit {
         this.movieService.getMoviesByOneTheme(theme).subscribe((data2)=>{
           triThemes = data2;
           this.movies=this.inBoth(triNotes,triThemes);
+          this.charger=true;
   
         });
        }else {
         this.movieService.getAllMovies().subscribe((data2)=>{
           triThemes = data2;
           this.movies=this.inBoth(triNotes,triThemes);
+          this.charger=true;
+
         });
 
        }

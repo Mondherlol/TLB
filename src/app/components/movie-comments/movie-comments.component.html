@@ -23,7 +23,8 @@
 					</div>
 				</div>
 				<div class="row text-start">
-					<h4 class="blue-text " style="font-size: 1.5rem;">"{{c.avisCourt}}"</h4>
+					<h4 *ngIf="c.avisCourt != null " class="blue-text " style="font-size: 1.5rem;">"{{c.avisCourt}}"</h4>
+					<h4 *ngIf="c.avisCourt == null " class="text-muted " style="font-size: 1.5rem;">Aucun avis détaillé.</h4>
 					<p class="content">{{c.avisLong}}</p>
 				</div>
 			
@@ -104,7 +105,8 @@
 					
 				</div>
 				<div class="row text-start">
-					<h4 class="blue-text " style="font-size: 1.5rem;">"{{userCommentaire.avisCourt}}"</h4>
+					<h4 *ngIf="userCommentaire.avisCourt != null " class="blue-text " style="font-size: 1.5rem;">"{{userCommentaire.avisCourt}}"</h4>
+					<h4 *ngIf="userCommentaire.avisCourt == null " class="text-muted " style="font-size: 1.5rem;">Aucun avis détaillé.</h4>
 					<p class="content">{{userCommentaire.avisLong}}</p>
 				</div>
 				<div class="flex-row d-flex text-start ">

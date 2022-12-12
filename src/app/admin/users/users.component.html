@@ -9,23 +9,25 @@
 						<tr >
 							<th><span>User</span></th>
 							<th><span>Created</span></th>
-							<th class="text-center"><span>Status</span></th>
+							<th class="text-center"><span>Admin</span></th>
 							<th><span>Email</span></th>
 							<th>&nbsp;</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr *ngFor="let u of users">
-							<td>
+							<td routerLink="/profil/{{u._id}}" style="cursor:pointer">
 								<img src="{{u.pdp}}" alt="">
-								<a href="#" class="user-link">{{u.pseudo}}</a>
+								<a  class="user-link">{{u.pseudo}}</a>
 								<span class="user-subhead">Utilisateur</span>
 							</td>
 							<td>
 								2013/08/08
 							</td>
 							<td class="text-center">
-								<span class="label label-default">Inactive</span>
+								<span *ngIf="u.admin" class="label label-default">Oui</span>
+								<span *ngIf=" !u.admin" class="label label-default">Non</span>
+
 							</td>
 							<td>
 								<a href="#">{{u.email}}</a>

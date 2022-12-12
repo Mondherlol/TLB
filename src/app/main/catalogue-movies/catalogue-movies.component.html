@@ -41,7 +41,14 @@
   
 </div>
     <div class="row  "  >
-    
+      <div *ngIf="!charger">
+        <div class="spinner-border text-primary" role="status" >
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    <div *ngIf="movies.length ==0 && charger">
+      <h1 class="text-muted">Aucun résultat.</h1>
+    </div>
        <div *ngFor="let m of movies"   class="col" >
     
          
@@ -65,8 +72,8 @@
           <div class="card-footer " style="text-align:center;">
             <div class="row">
               <a class="btn btn-primary btn-rounded "  routerLink="/movie/{{m._id}}"> VOIR PLUS</a> 
-              <!-- <button (click)="modifierMovie(m._id)" class="btn btn-secondary btn-rounded" style="margin-top: 8px;" > MODIFIER</button> -->
-              <!-- <button (click)="deleteMovie(m._id)" class="btn btn-danger btn-rounded" style="margin-top: 8px;" > SUPPRIMER</button> -->
+              <button (click)="modifierMovie(m._id)" class="btn btn-secondary btn-rounded" style="margin-top: 8px;" > MODIFIER</button>
+              <button (click)="deleteMovie(m._id)" class="btn btn-danger btn-rounded" style="margin-top: 8px;" > SUPPRIMER</button>
             </div>
     
     
@@ -93,10 +100,11 @@
             <div class="col-md-6">
                 <br><br><h3>Vous ne trouvez pas un film en particulier ?<span style="color: #d81f26;"> Ajoutez-le !</span></h3>
           
+                <p> 
+                  Faites découvrir à tout le monde vos films préférés, ou au contraire les pires horreurs qui risqueraient de leur faire perdre leur temps et qu'ils devraient fuir, grâce à vos reviews de films ! 
+                </p>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae enim sed metus porttitor venenatis eu a sem. Integer a sem scelerisque, faucibus purus quis, vestibulum sem.            </p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.            </p>
+                    Connectez-vous et ajouter un film en cliquant sur le bouton ci-dessous, ou directement dans la barre du haut.         </p>
                 <a class="ordr-nw-bttn" routerLink="/addMovie">Ajouter un Film</a>
             </div>
         </div>

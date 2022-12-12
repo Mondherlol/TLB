@@ -74,7 +74,7 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/catalogueMovies">Catalogue Films</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="connecte">
           <a class="nav-link" routerLink="/addMovie">Ajouter Film</a>
         </li>
    
@@ -99,7 +99,7 @@
                 <label mdbLabel class="form-label" for="form1">Cherchez un film</label>
               </mdb-form-control>
               
-              <button type="button" class="btn btn-primary">
+              <button type="submit" class="btn btn-primary">
                 <i class="fas fa-search"></i>
               </button>
             </div>
@@ -140,13 +140,13 @@
                             </a>
                             <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                               <li>
-                                <a class="dropdown-item" routerLink="/profil/{{currentUser._id}}">My profile</a>
+                                <a class="dropdown-item" routerLink="/monProfil">Mon profil</a>
                               </li>
                               <li>
                                 <a class="dropdown-item" routerLink="/users">Utilisateurs</a>
                               </li>
                               <li>
-                                <a class="dropdown-item" id="deconnexion" (click)="logout()">Logout</a>
+                                <a class="dropdown-item" id="deconnexion" (click)="logout()">Déconnexion</a>
                               </li>
                             </ul>
                           </li>

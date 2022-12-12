@@ -21,7 +21,7 @@
                      <div class="profile-header-info">
                         <h4 class="m-t-10 m-b-5">{{user.pseudo}}</h4>
                         <p class="m-b-10">{{user.email}}</p>
-                        <a  class="btn btn-sm btn-info mb-2"> Contacter </a>
+                        <a  class="btn btn-sm btn-info mb-2"> Modifier </a>
                      </div>
                      <!-- END profile-header-info -->
                   </div>
@@ -45,6 +45,9 @@
                   <!-- begin #profile-post tab -->
                   <div class="tab-pane fade active show" id="profile-post">
                      <!-- begin timeline -->
+                     <div *ngIf="userComments.length==0" style="text-align:center"> 
+                        <h1>Aucune note donné.</h1>
+                     </div>
                      <ul class="timeline">
                         <li *ngFor="let c of userComments" >
                            <!-- begin timeline-time -->
@@ -104,8 +107,8 @@
                                  </div>
                               </div>
                               <div class="timeline-footer">
-                                 <a (click)="addLike(c.idFilm,c.idCommentaire)" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> {{c.like}}</a>
-                                 <a (click)="addDislike(c.idFilm,c.idCommentaire)" href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-down fa-fw fa-lg m-r-3"></i> {{c.dislike}}</a>
+                                 <a class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> {{c.like}}</a>
+                                 <a  href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-down fa-fw fa-lg m-r-3"></i> {{c.dislike}}</a>
 
                               </div>
                         

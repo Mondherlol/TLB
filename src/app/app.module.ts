@@ -27,6 +27,7 @@ import { ResultatComponent } from './main/resultat/resultat.component';
 import { ModifierFilmComponent } from './components/modifier-film/modifier-film.component';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 import { ProfilComponent } from './main/profil/profil.component';
+import { MonProfilComponent } from './main/mon-profil/mon-profil.component';
 
 
 
@@ -47,6 +48,7 @@ import { ProfilComponent } from './main/profil/profil.component';
     ResultatComponent,
     ModifierFilmComponent,
     ProfilComponent,
+    MonProfilComponent,
 
 
   ],

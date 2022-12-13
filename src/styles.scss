@@ -13,3 +13,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color:brown;
   color: white;
 }
+
+@media only screen and (max-width: 600px) {
+  div > youtube-player > iframe {
+    width: 100%;
+  }
+}
+

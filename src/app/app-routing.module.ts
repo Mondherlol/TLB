@@ -26,13 +26,12 @@ const routes: Routes = [
   {path:'profil/:idUser',component:ProfilComponent},
   {path:'monProfil',component:MonProfilComponent},
   {path:'',redirectTo:'accueil',pathMatch:'full'},
-  {path:'/',redirectTo:'accueil',pathMatch:'full'},
   {path:'**',component:ErrorPageComponent}
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled', useHash:true} )],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

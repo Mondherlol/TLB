@@ -26,6 +26,7 @@ const routes: Routes = [
   {path:'profil/:idUser',component:ProfilComponent},
   {path:'monProfil',component:MonProfilComponent},
   {path:'',redirectTo:'accueil',pathMatch:'full'},
+  {path:'/',redirectTo:'accueil',pathMatch:'full'},
   {path:'**',component:ErrorPageComponent}
 
 ];

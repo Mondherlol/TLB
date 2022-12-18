@@ -142,7 +142,7 @@
                               <li>
                                 <a class="dropdown-item" routerLink="/monProfil">Mon profil</a>
                               </li>
-                              <li>
+                              <li *ngIf="currentUser.admin">
                                 <a class="dropdown-item" routerLink="/users">Utilisateurs</a>
                               </li>
                               <li>

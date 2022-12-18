@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
   ) { }
   
   ngOnInit(): void {
-
+    this.connecte= this.userService.isConnected();
 
     this.router.events.subscribe( event => {
       if(event.constructor.name === "NavigationEnd") {

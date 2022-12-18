@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
     console.log("ngOnInit appelé");
     this.router.events.subscribe( event => {
       console.log("Entrer dans le event subscribe");
-      if(event.constructor.name === "NavigationEnd" ) {
+      
         console.log("x");
 
         console.log("CurrentUser avant conexxion ="+this.currentUser);
@@ -44,7 +44,7 @@ export class NavbarComponent implements OnInit {
           
           this.connecte= true;
         }
-      }
+      
     });
     // if( localStorage.getItem('currentUser') != null && localStorage.getItem('currentUser')!= undefined){
     //   console.log('CurrentUser ='+this.currentUser);

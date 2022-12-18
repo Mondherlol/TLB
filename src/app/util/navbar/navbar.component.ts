@@ -22,16 +22,21 @@ export class NavbarComponent implements OnInit {
     this.router.events.subscribe( event => {
 
       if(event.constructor.name === "NavigationEnd" ) {
+        console.log("x");
 
         console.log("CurrentUser avant conexxion ="+this.currentUser);
         
         if( localStorage.getItem('currentUser') != null && localStorage.getItem('currentUser')!= undefined){
           console.log('CurrentUser ='+this.currentUser);
+
           this.currentUser = localStorage.getItem('currentUser');
+
           let x= JSON.parse(this.currentUser);
           this.currentUser=x;
+          console.log("test:");
           console.log(this.currentUser);
-          this.connecte= this.userService.isConnected();
+          
+          this.connecte= true;
         }
       }
     });
@@ -56,12 +61,6 @@ export class NavbarComponent implements OnInit {
     
     this.movieService.getAllMovies().subscribe((data)=>{
       this.movies = data;
-     for (let i = 0; i < this.movies.length; i++) {
-      console.log(this.movies[i].themes);
-        this.movies[i].themes=JSON.parse(data[i].themes);
-        console.log(this.movies[i].themes);
-     }
-  
     });
     this.searchFormGroup = this._formBuilder.group({
       titre:[,[Validators.required]],

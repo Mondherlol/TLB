@@ -19,12 +19,15 @@ export class NavbarComponent implements OnInit {
   ) { }
   
   ngOnInit(): void {
-    this.connecte= this.userService.isConnected();
 
     this.router.events.subscribe( event => {
       if(event.constructor.name === "NavigationEnd") {
         this.connecte= this.userService.isConnected();
-        if( localStorage.getItem('currentUser') != null){
+        console.log("connecte ="+this.connecte);
+        console.log("CurrentUser avant conexxion ="+this.currentUser);
+        
+        if( localStorage.getItem('currentUser') != null && localStorage.getItem('currentUser')!= undefined){
+          console.log('CurrentUser ='+this.currentUser);
           this.currentUser = localStorage.getItem('currentUser');
           let x= JSON.parse(this.currentUser);
           this.currentUser=x;

@@ -15,22 +15,12 @@ export class NavbarComponent implements OnInit {
   searchFormGroup : FormGroup = new FormGroup({});
 
   currentUser:any;
-  constructor(private router:Router, private userService:UserService, private movieService:MoviesService, private _formBuilder:FormBuilder
-  ) { }
-  
-  ngOnInit(): void {
-         
-    if( localStorage.getItem('currentUser') != null && localStorage.getItem('currentUser')!= undefined){
-      console.log('CurrentUser ='+this.currentUser);
-      this.currentUser = localStorage.getItem('currentUser');
-      let x= JSON.parse(this.currentUser);
-      this.currentUser=x;
-      console.log(this.currentUser);
-      this.connecte=true;
-    }
-
+  constructor(private router:Router, private userService:UserService, private movieService:MoviesService, private _formBuilder:FormBuilder,
+    
+  ) {
+    
     this.router.events.subscribe( event => {
-      if(event.constructor.name === "NavigationEnd" && localStorage.getItem('currentUser') != null && localStorage.getItem('currentUser')!= undefined) {
+      if(event.constructor.name === "NavigationEnd" ) {
 
         console.log("CurrentUser avant conexxion ="+this.currentUser);
         
@@ -41,10 +31,25 @@ export class NavbarComponent implements OnInit {
           this.currentUser=x;
           console.log(this.currentUser);
           this.connecte= this.userService.isConnected();
-          console.log("connecte ="+this.connecte);
         }
       }
     });
+   }
+  
+  ngOnInit(): void {
+         
+    // if( localStorage.getItem('currentUser') != null && localStorage.getItem('currentUser')!= undefined){
+    //   console.log('CurrentUser ='+this.currentUser);
+    //   this.currentUser = localStorage.getItem('currentUser');
+    //   let x= JSON.parse(this.currentUser);
+    //   this.currentUser=x;
+    //   console.log(this.currentUser);
+    //   this.connecte=true;
+    // }
+    this.connecte= this.userService.isConnected();
+    console.log("connecte ="+this.connecte);
+
+    
     this.movieService.getAllMovies().subscribe((data)=>{
       this.movies = data;
      for (let i = 0; i < this.movies.length; i++) {

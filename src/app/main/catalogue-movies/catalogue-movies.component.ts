@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { ModifierFilmComponent } from 'src/app/components/modifier-film/modifier-film.component';
 import { MoviesService } from 'src/app/services/movieService/movies.service';
+import { UserService } from 'src/app/services/movieService/user.service';
 
 @Component({
   selector: 'app-catalogue-movies',
@@ -10,7 +11,11 @@ import { MoviesService } from 'src/app/services/movieService/movies.service';
   styleUrls: ['./catalogue-movies.component.scss']
 })
 export class CatalogueMoviesComponent implements OnInit {
+  triAlpha=false;
+  triNote=false;
   charger=false;
+  connecte=false;
+  currentUser:any;
   movies:any[] =[];
   card:any;
   test:string[]=[];
@@ -21,12 +26,27 @@ export class CatalogueMoviesComponent implements OnInit {
   constructor(
     private movieService:MoviesService,
     private modalService:MdbModalService,
-    private _formBuilder:FormBuilder
+    private _formBuilder:FormBuilder,
+    private userService:UserService
     ) { }
 
 
 
   ngOnInit(): void {
+    if(localStorage.getItem('currentUser') == null && localStorage.getItem('currentUser')== undefined) this.connecte=false;
+
+        if( localStorage.getItem('currentUser') != null && localStorage.getItem('currentUser')!= undefined){
+
+          this.currentUser = localStorage.getItem('currentUser');
+
+          let x= JSON.parse(this.currentUser);
+          this.currentUser=x;
+          
+          this.connecte= true;
+        }
+        this.connecte=this.userService.isConnected();
+      
+
     this.movieService.getAllMovies().subscribe((data)=>{
       this.movies = data;
       this.charger=true;
@@ -115,4 +135,23 @@ export class CatalogueMoviesComponent implements OnInit {
   return this.operation(list1, list2, true);
 }
 
+sortAlpha(){
+  if(! this.triAlpha){
+    this.movies.sort((a,b)=> a.titre.localeCompare(b.titre));
+    this.triAlpha=true;
+  }else {
+    this.movies.sort((a,b)=> b.titre.localeCompare(a.titre));
+    this.triAlpha=false;
+  }
+
+}
+sortNote(){
+  if(! this.triNote){
+    this.movies.sort((a,b)=> a.note - b.note);
+    this.triNote=true;
+  }else {
+    this.movies.sort((a,b)=> b.note - a.note);
+    this.triNote=false;
+  }
+}
 }

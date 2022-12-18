@@ -1,10 +1,44 @@
 
+<div style="display:flex; justify-content: right; text-align: right; cursor: pointer; font-size: large; margin-right: 50px; margin-top: 20px; margin-bottom: 5px;">
+  
+    <p style="padding-right: 10px;">
+      Trier par : 
+     </p><a class="sort"  style="padding-right: 10px;"  (click)="sortAlpha()">
+      <span *ngIf="triAlpha">
+        <i class="fas fa-arrow-down-a-z"></i>
+      </span>
+      <span *ngIf="!triAlpha">
+        <i class="fas fa-arrow-down-z-a"></i>
+      </span>
+       Alpha
+      </a>
+      <a  class="sort" (click)="sortNote()">
+        <span *ngIf="triNote">
+          <i class="fas fa-arrow-down-1-9"></i>
+        </span>
+        <span *ngIf="!triNote">
+          <i class="fas fa-arrow-down-9-1"></i>
+        </span>
+        Note
+      </a>
+ 
+ 
+</div>
+
 <div class="container-fluid " class="styleCard"  >
 
 
- <div  class="row  filtres"   >
+ <div   class="  row  filtres"    >
+
+
+
+  <a class="btn btn-warning" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style="width: 75px; height: fit-content;">
+   <i class="fas fa-rectangle-list"></i> Filtre <i class="fas fa-angle-down"></i>
+  </a>
+
   
-      <form [formGroup]="filtreFormGroup" (ngSubmit)="filtrer()"  style="width: 200px; "  > 
+
+      <form class="collapse"  id="collapseExample" [formGroup]="filtreFormGroup" (ngSubmit)="filtrer()"  style="width: 200px; "  > 
 
         <div>
 
@@ -49,10 +83,11 @@
     <div *ngIf="movies.length ==0 && charger">
       <h1 class="text-muted">Aucun résultat.</h1>
     </div>
+    
        <div *ngFor="let m of movies"   class="col" >
     
-         
-        <div class="card" id="{{m._id}}" (mouseover)="afficher(m._id)" (mouseout)="cacher(m._id)" 
+       
+        <div class="card" id="{{m._id}}" (mouseover)="afficher(m._id)" (mouseout)="cacher(m._id)  "  [routerLink]="!connecte ? ['/movie/',m._id]:[]"
          style="background-image: url({{m.posterURL}});
         background-repeat: no-repeat;
         background-size: cover;"> 
@@ -71,9 +106,9 @@
       </div>
           <div class="card-footer " style="text-align:center;">
             <div class="row">
-              <a class="btn btn-primary btn-rounded "  routerLink="/movie/{{m._id}}"> VOIR PLUS</a> 
-              <button (click)="modifierMovie(m._id)" class="btn btn-secondary btn-rounded" style="margin-top: 8px;" > MODIFIER</button>
-              <button (click)="deleteMovie(m._id)" class="btn btn-danger btn-rounded" style="margin-top: 8px;" > SUPPRIMER</button>
+              <!-- <a class="btn btn-primary btn-rounded "  routerLink="/movie/{{m._id}}"> VOIR PLUS</a>  -->
+              <button (click)="modifierMovie(m._id)" *ngIf="connecte " class="btn btn-secondary btn-rounded" style="margin-top: 8px;" > MODIFIER</button>
+              <button (click)="deleteMovie(m._id)" *ngIf="connecte" class="btn btn-danger btn-rounded" style="margin-top: 8px;" > SUPPRIMER</button>
             </div>
     
     

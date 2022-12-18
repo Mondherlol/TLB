@@ -19,8 +19,14 @@ export class NavbarComponent implements OnInit {
     
   ) {
     
-    this.router.events.subscribe( event => {
 
+   }
+  
+  ngOnInit(): void {
+    if(localStorage.getItem('currentUser') == null && localStorage.getItem('currentUser')== undefined) this.connecte=false;
+    console.log("ngOnInit appelé");
+    this.router.events.subscribe( event => {
+      console.log("Entrer dans le event subscribe");
       if(event.constructor.name === "NavigationEnd" ) {
         console.log("x");
 
@@ -40,11 +46,6 @@ export class NavbarComponent implements OnInit {
         }
       }
     });
-   }
-  
-  ngOnInit(): void {
-    if(localStorage.getItem('currentUser') == null && localStorage.getItem('currentUser')== undefined) this.connecte=false
-         
     // if( localStorage.getItem('currentUser') != null && localStorage.getItem('currentUser')!= undefined){
     //   console.log('CurrentUser ='+this.currentUser);
     //   this.currentUser = localStorage.getItem('currentUser');

@@ -30,9 +30,8 @@ export class NavbarComponent implements OnInit {
     }
 
     this.router.events.subscribe( event => {
-      if(event.constructor.name === "NavigationEnd") {
-        this.connecte= this.userService.isConnected();
-        console.log("connecte ="+this.connecte);
+      if(event.constructor.name === "NavigationEnd" && localStorage.getItem('currentUser') != null && localStorage.getItem('currentUser')!= undefined) {
+
         console.log("CurrentUser avant conexxion ="+this.currentUser);
         
         if( localStorage.getItem('currentUser') != null && localStorage.getItem('currentUser')!= undefined){
@@ -41,6 +40,8 @@ export class NavbarComponent implements OnInit {
           let x= JSON.parse(this.currentUser);
           this.currentUser=x;
           console.log(this.currentUser);
+          this.connecte= this.userService.isConnected();
+          console.log("connecte ="+this.connecte);
         }
       }
     });

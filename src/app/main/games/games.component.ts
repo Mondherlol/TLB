@@ -7,8 +7,7 @@ import { MoviesService } from 'src/app/services/movieService/movies.service';
   styleUrls: ['./games.component.scss']
 })
 export class GamesComponent implements OnInit {
-
-
+      
   constructor() { }
 
 

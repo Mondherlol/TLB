@@ -8,7 +8,10 @@
             <div class="profile">
                <div class="profile-header">
                   <!-- BEGIN profile-header-cover -->
-                  <div class="profile-header-cover"></div>
+                  <div *ngIf="user.pdc!=null" class="profile-header-cover"       style=" background-image: url({{user.pdc}});"   ></div>
+                  <div *ngIf="user.pdc==null" class="profile-header-cover"       style="  background-image: url(https://marmotamaps.com/de/fx/wallpaper/download/faszinationen/Marmotamaps_Wallpaper_Berchtesgaden_Desktop_1920x1080.jpg);
+                  "   ></div>
+
                   <!-- END profile-header-cover -->
                   <!-- BEGIN profile-header-content -->
                   <div class="profile-header-content">
@@ -21,7 +24,7 @@
                      <div class="profile-header-info">
                         <h4 class="m-t-10 m-b-5">{{user.pseudo}}</h4>
                         <p class="m-b-10">{{user.email}}</p>
-                        <a  class="btn btn-sm btn-info mb-2"> Modifier </a>
+                        <a  class="btn btn-sm btn-info mb-2" (click)="modifierProfil()"> Modifier </a>
                      </div>
                      <!-- END profile-header-info -->
                   </div>

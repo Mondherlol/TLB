@@ -1,0 +1,86 @@
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Modifier votre profil</h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modalRef.close()"
+    ></button>
+  </div>
+  <div class="modal-body ">
+    <form [formGroup]="modifyProfil" (ngSubmit)="modifierProfil()">
+
+    
+        <div class="profile" style="background-image: url( {{ modifyProfil.controls['pdc'].value }} ) ">
+            
+            <figure>
+                <img src="{{ modifyProfil.controls['pdp'].value }}" alt="" />
+              </figure>
+        </div>
+    
+        <mdb-form-control>
+        <div class="form-outline mb-4">
+          <input formControlName="pseudo" mdbInput type="text" id="form3Example1cg" class="form-control form-control-lg"  />
+          <label mdbLabel  class="form-label" for="form3Example1cg">Votre Pseudo </label>
+          <div class="erreur" *ngIf="isInvalidPseudo()" >
+            Le pseudo est obligatoire
+            </div>
+            <div class="erreur" *ngIf="isShortPseudo()" >
+              Le pseudo doit faire au moins 4 caractères
+              </div>
+        </div>
+        </mdb-form-control>
+        <mdb-form-control>
+        <div class="form-outline mb-4">
+          <input formControlName="email"  mdbInput  type="email" id="form3Example3cg" class="form-control form-control-lg"/>
+          <label mdbLabel   class="form-label" for="form3Example3cg">Votre email</label>
+          <div class="erreur" *ngIf="isIncorrectEmail()" >
+            Format du mail incorrect
+            </div>
+          <div class="erreur" *ngIf="isInvalidEmail()" >
+            L'email est obligatoire
+            </div>
+      
+        </div>
+        </mdb-form-control>
+  
+        
+        <div class=" mb-4">
+        <label class="form-label" for="customFile">Photo de profil</label>
+        <input formControlName="pdp" 
+        name="pdp"
+        type="text" 
+        class="form-control"    />
+        <div class="erreur" *ngIf="isInvalidPdp()"  >
+          Veuillez selectionner une photo de profil.
+          </div>
+       
+
+        </div>
+        <div class=" mb-4">
+            <label class="form-label" for="customFile">Photo de couverture</label>
+            <input formControlName="pdc" 
+            name="pdc"
+            type="text" 
+            class="form-control"    />
+          
+            <div class="erreur" *ngIf="isInvalidPdc()"  >
+                Veuillez selectionner une photo de couverture.
+                </div>
+    
+            </div>
+  
+     
+
+</form>
+     
+   
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modalRef.close()">
+      Annuler
+    </button>
+    <button type="submit" (click)="modifierProfil()"  [disabled]="modifyProfil.invalid" class="btn btn-primary">Sauvegarder</button>
+
+  </div>

@@ -28,6 +28,8 @@ import { ModifierFilmComponent } from './components/modifier-film/modifier-film.
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 import { ProfilComponent } from './main/profil/profil.component';
 import { MonProfilComponent } from './main/mon-profil/mon-profil.component';
+import { ModifierProfilComponent } from './forms/modifier-profil/modifier-profil.component';
+import { ChangelogComponent } from './util/changelog/changelog.component';
 
 
 
@@ -49,6 +51,8 @@ import { MonProfilComponent } from './main/mon-profil/mon-profil.component';
     ModifierFilmComponent,
     ProfilComponent,
     MonProfilComponent,
+    ModifierProfilComponent,
+    ChangelogComponent,
 
 
   ],

@@ -44,7 +44,9 @@ export class UserService {
   getUser(idUser:any):Observable<any>{
     return this.http.get(`${this.baseUrl}/${idUser}`);
   }
-  
+  updateUser(idUser: string, user: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/${idUser}`, user,this.getToken());
+  }
   getToken(){
     var token = localStorage.getItem('TOKEN');
     if(token==null){

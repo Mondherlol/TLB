@@ -12,6 +12,7 @@ import { MovieComponent } from './main/movie/movie.component';
 import { ProfilComponent } from './main/profil/profil.component';
 import { ResultatComponent } from './main/resultat/resultat.component';
 import { ErrorPageComponent } from './util/error-page/error-page.component';
+import { ChangelogComponent } from './util/changelog/changelog.component';
 
 const routes: Routes = [
   {path:'accueil', component:AccueilComponent},
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path:'resultat/:titre',component:ResultatComponent},
   {path:'profil/:idUser',component:ProfilComponent},
   {path:'monProfil',component:MonProfilComponent},
+  {path:'changelog',component:ChangelogComponent},
   {path:'',redirectTo:'accueil',pathMatch:'full'},
   {path:'**',component:ErrorPageComponent}
 

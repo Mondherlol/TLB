@@ -24,40 +24,21 @@ export class NavbarComponent implements OnInit {
   
   ngOnInit(): void {
     if(localStorage.getItem('currentUser') == null && localStorage.getItem('currentUser')== undefined) this.connecte=false;
-    console.log("ngOnInit appelé");
     this.router.events.subscribe( event => {
-      console.log("Entrer dans le event subscribe");
       
-        console.log("x");
 
-        console.log("CurrentUser avant conexxion ="+this.currentUser);
         
         if( localStorage.getItem('currentUser') != null && localStorage.getItem('currentUser')!= undefined){
-          console.log('CurrentUser ='+this.currentUser);
 
           this.currentUser = localStorage.getItem('currentUser');
 
           let x= JSON.parse(this.currentUser);
           this.currentUser=x;
-          console.log("test:");
-          console.log(this.currentUser);
           
           this.connecte= true;
         }
       
     });
-    // if( localStorage.getItem('currentUser') != null && localStorage.getItem('currentUser')!= undefined){
-    //   console.log('CurrentUser ='+this.currentUser);
-    //   this.currentUser = localStorage.getItem('currentUser');
-    //   let x= JSON.parse(this.currentUser);
-    //   this.currentUser=x;
-    //   console.log(this.currentUser);
-    //   this.connecte=true;
-    // }
- 
-    // this.connecte= this.userService.isConnected();
-    // console.log("connecte ="+this.connecte);
-
 
     
     this.movieService.getAllMovies().subscribe((data)=>{

@@ -10,6 +10,9 @@
                   <!-- BEGIN profile-header-cover -->
                   <div class="profile-header-cover"></div>
                   <!-- END profile-header-cover -->
+                  <div *ngIf="user.pdc!=null" class="profile-header-cover"       style=" background-image: url({{user.pdc}});"   ></div>
+                  <div *ngIf="user.pdc==null" class="profile-header-cover"       style="  background-image: url(https://marmotamaps.com/de/fx/wallpaper/download/faszinationen/Marmotamaps_Wallpaper_Berchtesgaden_Desktop_1920x1080.jpg);
+                  "   ></div>
                   <!-- BEGIN profile-header-content -->
                   <div class="profile-header-content">
                      <!-- BEGIN profile-header-img -->
